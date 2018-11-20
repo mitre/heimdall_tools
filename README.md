@@ -16,12 +16,14 @@ gem 'heimdall_tools', :git => "https://github.com/mitre/heimdall_tools"
 
 And then execute:
 
+```
     $ bundle
+```
 
 Clone the repo and install it yourself as:
 
+```
     $ gem install heimdall_tools
-
 ```
 
 ## Command line Usage
