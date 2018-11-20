@@ -2,13 +2,17 @@
 
 # HeimdallTools
 
-HeimdallTools supplies several CLI tools to convert compliance data for viewing in the Heimdall application stack.
+HeimdallTools supplies several CLI tools to convert HDF format to be viewable in Heimdall. The converters in version 1.0.1 are:
 
-* <add your tools here>
-
-It also includes an API that can be used in a ruby application. The Ruby API is defined in lib/heimdall_tools/...
+* fortify_mapper
 
 # Installation
+
+Add this line to your application's Gemfile:
+
+```
+gem 'heimdall_tools', :git => "https://github.com/mitre/heimdall_tools"
+```
 
 And then execute:
 
@@ -18,7 +22,28 @@ Clone the repo and install it yourself as:
 
     $ gem install heimdall_tools
 
-# Usage
+```
+
+## Command line Usage
+
+On the Command Line, `heimdall_tools help` will print a listing of all the command with a short description.
+For detailed help on any command, run `heimdall_tools help [COMMAND]`. Help can also be called with the `-h, --help` flags after any command, like `heimdall_tools fortify_mapper -h`.
+
+
+## fortify_mapper
+
+fortify_mapper translates an Fortify results FVDL file into HDF format json to be viewable in Heimdall
+
+```
+USAGE: heimdall_tools fortify_mapper [OPTIONS] -f <fortify-fvdl> -o <scan-results.json>
+
+FLAGS:
+	-j --fortify-fvdl <fortify-fvdl> : path to Fortify Scan FVDL file
+	-o --output <scan-results>       : path to output scan-results json
+	-V --verbose                     : verbose run [optional]
+
+example: heimdall_tools fortify_mapper -j results.json -o output.ckl
+```
 
 ## version  
 
