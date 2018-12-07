@@ -16,6 +16,7 @@ module HeimdallTools
 
       begin
         data = Nori.new(empty_tag_value: true).parse(fvdl)
+        @timestamp = data['FVDL']['CreatedTS']
         @vulns = data['FVDL']['Vulnerabilities']['Vulnerability']
         @snippets = data['FVDL']['Snippets']['Snippet']
         @rules = data['FVDL']['Description']
@@ -47,22 +48,22 @@ module HeimdallTools
           end
         end
       end
-      findings
+      findings.uniq
     end
 
     def snippet(snippetid)
       snippet = @snippets.select { |x| x['@id'].eql?(snippetid) }.first
-      "<br>Path: #{snippet['File']} " \
+      "\nPath: #{snippet['File']}\n" \
       "StartLine: #{snippet['StartLine']}, " \
-      "EndLine: #{snippet['EndLine']}<br>" \
-      "Code:<pre>#{snippet['Text'].strip}</pre>" \
+      "EndLine: #{snippet['EndLine']}\n" \
+      "Code:\n#{snippet['Text'].strip}" \
     end
 
     def nist_tag(rule)
       references = rule['References']['Reference']
       references = [references] unless references.is_a?(Array)
       tag = references.detect { |x| x['Author'].eql?(NIST_REFERENCE_NAME) }
-      tag.nil? ? 'Unmapped' : tag['Title'].match(/[a-zA-Z][a-zA-Z]-\d{1,2}/)
+      tag.nil? ? 'unmapped' : tag['Title'].match(/[a-zA-Z][a-zA-Z]-\d{1,2}/)
     end
 
     def impact(classid)
@@ -74,7 +75,7 @@ module HeimdallTools
       inpsec_json = {}
 
       inpsec_json['name'] = 'Fortify Static Analyzer Scan'
-      inpsec_json['version'] = 'UUID: b412c50a-27c0-4135-b66c-19b9e88e932e'
+      inpsec_json['version'] = [@timestamp['@date'], @timestamp['@time']].join(' ')
       inpsec_json['controls'] = []
 
       @rules.each do |rule|
@@ -87,7 +88,7 @@ module HeimdallTools
         @item['results']      = []
         @item['results']      = primaries(@item['id'])
         @item['tags']         = {}
-        @item['tags']['nist'] = [nist_tag(rule).to_s]
+        @item['tags']['nist'] = [nist_tag(rule).to_s, 'Rev_4']
         inpsec_json['controls'] << @item
       end
       inpsec_json.to_json
