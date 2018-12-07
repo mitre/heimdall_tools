@@ -2,9 +2,10 @@
 
 # HeimdallTools
 
-HeimdallTools supplies several CLI tools to convert HDF format to be viewable in Heimdall. The converters in version 1.0.1 are:
+HeimdallTools supplies several CLI tools to convert HDF format to be viewable in Heimdall. The converters in version 1.1.1 are:
 
 * fortify_mapper
+* zap_mapper
 
 # Installation
 
@@ -38,11 +39,27 @@ fortify_mapper translates an Fortify results FVDL file into HDF format json to b
 USAGE: heimdall_tools fortify_mapper [OPTIONS] -f <fortify-fvdl> -o <scan-results.json>
 
 FLAGS:
-	-j --fortify-fvdl <fortify-fvdl> : path to Fortify Scan FVDL file
-	-o --output <scan-results>       : path to output scan-results json
-	-V --verbose                     : verbose run [optional]
+	-f --fortify-fvdl <fortify-fvdl> : path to Fortify Scan FVDL file.
+	-o --output <scan-results>       : path to output scan-results json.
+	-V --verbose                     : verbose run [optional].
 
-example: heimdall_tools fortify_mapper -j results.json -o output.ckl
+example: heimdall_tools fortify_mapper -f audit.fvdl -o scan_results.json
+```
+
+## zap_mapper
+
+zap_mapper translates OWASP ZAP results Json to HDF format Json be viewed on Heimdall
+
+```
+USAGE: heimdall_tools zap_mapper [OPTIONS] -j <zap-json> -n <site-name> -o <scan-results.json>
+
+FLAGS:
+    -j --json <zap-json>             : path to OWASP ZAP results JSON file.
+    -n --name <site-name>            : URL of the site being evaluated.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools zap_mapper -j zap_results.json -n site_name -o scan_results.json
 ```
 
 ## version  

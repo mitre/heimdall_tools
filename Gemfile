@@ -7,3 +7,4 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'json'
 gem 'nori'
 gem 'nokogiri'
+gem 'csv'
