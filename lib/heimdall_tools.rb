@@ -6,4 +6,5 @@ module HeimdallTools
   autoload :Command, 'heimdall_tools/command'
   autoload :CLI, 'heimdall_tools/cli'
   autoload :FortifyMapper, 'heimdall_tools/fortify_mapper'
+  autoload :ZapMapper, 'heimdall_tools/zap_mapper'
 end
