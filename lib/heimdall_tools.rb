@@ -7,4 +7,5 @@ module HeimdallTools
   autoload :CLI, 'heimdall_tools/cli'
   autoload :FortifyMapper, 'heimdall_tools/fortify_mapper'
   autoload :ZapMapper, 'heimdall_tools/zap_mapper'
+  autoload :SonarQubeMapper, 'heimdall_tools/sonarqube_mapper'
 end
