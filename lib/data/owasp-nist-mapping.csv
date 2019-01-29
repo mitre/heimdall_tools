@@ -1,11 +1,11 @@
 OWASP-ID,OWASP Name,NIST-ID,NIST Name
 A1,Injection,SI-10,Information Input Validation
 A2,Broken Authentication,SC-23,Session Authenticity
-A3,Sensitive Data Exposure,SC-8,Transmission Confidentiality and Integrity
-A4,XML External Entities (XXE),,
+A3,Sensitive Data Exposure,SI-11,Error Handling
+A4,XML External Entities (XXE),SI-10,Information Input Validation
 A5,Broken Access Control,AC-3,Access Enforcement
 A6,Security Misconfiguration,CM-6,Configuration Settings
 A7,Cross-Site Scripting (XSS),SI-10,Information Input Validation
-A8,Insecure Deserialization,,
-A9,Using Components with Known Vulnerabilities,,
-A10,Insufficient Logging&Monitoring,,
+A8,Insecure Deserialization,SC-23,Session Authenticity
+A9,Using Components with Known Vulnerabilities,SI-2,Flaw Remediation
+A10,Insufficient Logging&Monitoring,AU-12,Audit Generation
