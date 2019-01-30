@@ -41,7 +41,7 @@ fortify_mapper translates an Fortify results FVDL file into HDF format json to b
 USAGE: heimdall_tools fortify_mapper [OPTIONS] -f <fortify-fvdl> -o <scan-results.json>
 
 FLAGS:
-	-f --fortify-fvdl <fortify-fvdl> : path to Fortify Scan FVDL file.
+	-f --fvdl <fortify-fvdl>         : path to Fortify Scan FVDL file.
 	-o --output <scan-results>       : path to output scan-results json.
 	-V --verbose                     : verbose run [optional].
 
