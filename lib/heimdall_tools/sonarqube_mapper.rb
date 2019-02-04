@@ -3,22 +3,28 @@ require 'json'
 require 'csv'
 
 MAPPING_FILES = {
-    cwe: './lib/data/cwe-nist-mapping.csv'.freeze,
-    owasp: './lib/data/owasp-nist-mapping.csv'.freeze,
-}
+  cwe: './lib/data/cwe-nist-mapping.csv'.freeze,
+  owasp: './lib/data/owasp-nist-mapping.csv'.freeze
+}.freeze
 
+IMPACT_MAPPING = {
+  BLOCKER: 1.0,
+  CRITICAL: 0.7,
+  MAJOR: 0.5,
+  MINOR: 0.3,
+  INFO: 0.0
+}.freeze
 
 def check_response(response)
   raise "API Error: #{response.status}\n#{response.body}" unless response.ok?
 end
 
-
 class SonarQubeApi
-  ISSUES_ENDPOINT = '/issues/search'
-  RULES_ENDPOINT = '/rules/search'
-  RULE_ENDPOINT = '/rules/show'
-  SOURCE_ENDPOINT = '/sources/raw'
-  VERSION_ENDPOINT = '/server/version'
+  ISSUES_ENDPOINT = '/issues/search'.freeze
+  RULES_ENDPOINT = '/rules/search'.freeze
+  RULE_ENDPOINT = '/rules/show'.freeze
+  SOURCE_ENDPOINT = '/sources/raw'.freeze
+  VERSION_ENDPOINT = '/server/version'.freeze
 
   PAGE_SIZE = 100
 
@@ -31,21 +37,22 @@ class SonarQubeApi
   def query_issues(project_name)
     issues = []
     params = {
-        componentKeys: project_name,
+      componentKeys: project_name,
         resolved: 'false',
         types: 'VULNERABILITY',
         ps: PAGE_SIZE,
         p: 1
     }
 
-    loop do  # Get all pages
-      response = HTTParty.get(@api_url + ISSUES_ENDPOINT, {query: params})
+    loop do # Get all pages
+      response = HTTParty.get(@api_url + ISSUES_ENDPOINT, { query: params })
       check_response response
       issues += response['issues']
 
       if params[:p] * PAGE_SIZE >= response['paging']['total']
         break
       end
+
       params[:p] += 1
     end
 
@@ -55,9 +62,9 @@ class SonarQubeApi
   # Query rules endpoint to get additional info for 800-53 mapping
   def query_rule(rule)
     params = {
-        key: rule,
+      key: rule
     }
-    response = HTTParty.get(@api_url + RULE_ENDPOINT, {query: params})
+    response = HTTParty.get(@api_url + RULE_ENDPOINT, { query: params })
     check_response response
     response['rule']
   end
@@ -71,9 +78,9 @@ class SonarQubeApi
   # We are going to use sources/raw for now so we don't have to deal with the html
   def query_code_snippet(component, start_line, end_line)
     params = {
-        key: component,
+      key: component
     }
-    response = HTTParty.get(@api_url + SOURCE_ENDPOINT, {query: params})
+    response = HTTParty.get(@api_url + SOURCE_ENDPOINT, { query: params })
     check_response response
     response.body.split("\n")[start_line..end_line].join("\n")
   end
@@ -86,7 +93,6 @@ class SonarQubeApi
   end
 end
 
-
 module HeimdallTools
   class SonarQubeMapper
     # Fetches the necessary data from the API and builds report
@@ -95,15 +101,15 @@ module HeimdallTools
       @api = SonarQubeApi.new(sonarqube_url)
 
       @mappings = load_nist_mappings
-      @findings = @api.query_issues(@project_name).map {|x| Finding.new(x, @api)}
+      @findings = @api.query_issues(@project_name).map { |x| Finding.new(x, @api) }
       @controls = _get_controls
     end
 
     # Build an array of Controls based on the SonarQube findings
     def _get_controls
-      control_key_to_findings_map = Hash.new { |h, k| h[k] = []}
+      control_key_to_findings_map = Hash.new { |h, k| h[k] = [] }
       @findings.each { |f| control_key_to_findings_map[f.control_key] << f }
-      control_key_to_findings_map.map{ |control_key, findings| Control.new(control_key, findings, @api, @mappings) }
+      control_key_to_findings_map.map { |control_key, findings| Control.new(control_key, findings, @api, @mappings) }
     end
 
     def load_nist_mappings
@@ -113,8 +119,8 @@ module HeimdallTools
                                             headers: true,
                                             header_converters: :symbol,
                                             converters: :all })
-        mappings[mapping_type] = Hash[csv_data.map{ |row|
-          [row[(mapping_type.to_s.downcase + "id").to_sym].to_s, row[:nistid]]
+        mappings[mapping_type] = Hash[csv_data.map { |row|
+          [row[(mapping_type.to_s.downcase + 'id').to_sym].to_s, [row[:nistid], "Rev_#{row[:rev]}"]]
         }]
       end
       mappings
@@ -123,9 +129,11 @@ module HeimdallTools
     # Returns a report in HDF format
     def to_hdf
       {
-          controls: @controls.map(&:hdf),
-          version: @api.query_version,
-          name: "#{@project_name} SonarQube Scan",
+        controls: @controls.map(&:hdf),
+          # currently on heimdall version tag is displayed as time on profile view
+          # this wil be updated after heimdal update to fix this
+          version: Time.now.strftime("%a,%d %b %Y %X"),
+          name: "#{@project_name} SonarQube Scan"
       }.to_json
     end
   end
@@ -136,20 +144,20 @@ class Control
   # OWASP is stated specifically, ex owasp-a1
   #
   # SonarQube is inconsistent with tags (ex some cwe rules don't have cwe number in desc,) as noted below
-  TAG_DATA = {}  # NOTE: We count on Ruby to preserve order for TAG_DATA
+  TAG_DATA = {} # NOTE: We count on Ruby to preserve order for TAG_DATA
   TAG_DATA[:cwe] = {
-      # Some rules with cwe tag don't have cwe number in description!
-      # Currently only squid:S2658, but it has OWASP tag so we can use that.
-      regex: 'cwe.mitre.org/data/definitions/([^\.]*)',  # Sometimes the "http://" is not part of the url
+    # Some rules with cwe tag don't have cwe number in description!
+    # Currently only squid:S2658, but it has OWASP tag so we can use that.
+    regex: 'cwe.mitre.org/data/definitions/([^\.]*)' # Sometimes the "http://" is not part of the url
   }
   TAG_DATA[:owasp] = {
-      # Many (19 currently) owasp have don't cwe (ex. squid:S3355)
+    # Many (19 currently) owasp have don't cwe (ex. squid:S3355)
   }
   TAG_DATA[:cert] = {
-      # Some rules only have cert tag (ex. kotlin:S1313)
-      # Some rules with cert tag don't actually have cert in description!
-      # Currently only squid:S4434, but it has OWASP tag so we can use that.
-      regex: 'CERT,?\n? ([^<]*)\.?<',
+    # Some rules only have cert tag (ex. kotlin:S1313)
+    # Some rules with cert tag don't actually have cert in description!
+    # Currently only squid:S4434, but it has OWASP tag so we can use that.
+    regex: 'CERT,?\n? ([^<]*)\.?<'
   }
   # All sans-tagged rules have CWE number, so no need to map SANS
   # There some tags which we can map directly (ex. denial-of-service)
@@ -158,7 +166,7 @@ class Control
 
   # These rules don't have the cert/cwe number in description or have other problems
   # If there is an error with them, ignore it since we know they have problems.
-  KNOWN_BAD_RULES = %w(squid:S4434 squid:S2658).to_set
+  KNOWN_BAD_RULES = %w{squid:S4434 squid:S2658}.to_set
 
   # @param [SonarQubeApi] sonar_api
   def initialize(control_key, findings, sonar_api, mappings)
@@ -213,24 +221,24 @@ class Control
       parsed_tag = parsed_tags.find { |tag| @mappings[tag_type].key? tag }
       next if parsed_tag.nil?
 
-      return [@mappings[tag_type][parsed_tag]]
+      return [@mappings[tag_type][parsed_tag]].flatten.uniq
     end
 
-    [""]  # HDF expects this to be a list, but not an empty list even if there aren't results
+    ['unmapped'] # HDF expects this to be a list, but not an empty list even if there aren't results
   end
 
   def hdf
     # Note: Structure is based on fortify -> HDF converter output
     {
-        title: @data['name'],
+      title: @data['name'],
         desc: @data['htmlDesc'],
-        impact: 0.5,
+        impact: IMPACT_MAPPING[@data['severity'].to_sym],
         tags: {
-            nist: get_nist_tags,
+          nist: get_nist_tags
         },
         results: @findings.map(&:get_result),
-        code: '',  # This should be the inspec code for the control, which we don't have
-        id: @key,
+        code: '', # This should be the inspec code for the control, which we don't have
+        id: @key
     }
   end
 end
@@ -253,32 +261,31 @@ class Finding
     vuln_end =  @data['textRange']['endLine']
     component = @data['component']
     snip_start = [1, vuln_start - 3].max
-    snip_end = vuln_end + 3  # api doesn't care if we request lines past end of file
+    snip_end = vuln_end + 3 # api doesn't care if we request lines past end of file
     snip = @api.query_code_snippet(component, snip_start, snip_end)
 
     snip_html = "StartLine: #{snip_start}, EndLine: #{snip_end}<br>Code:<pre>#{snip}</pre>"
     {
-        status: "failed",
+      status: 'failed',
         code_desc: "Path:#{component}:#{vuln_start}:#{vuln_end} #{snip_html}"
     }
   end
 end
 
-if __FILE__ == $0
-  puts "Getting data from SonarQube API"
+if $PROGRAM_NAME == __FILE__
+  puts 'Getting data from SonarQube API'
 
-  url = "http://sonar:9000/api"
-  project_name = "ansible-test"
+  url = 'http://sonar:9000/api'
+  project_name = 'ansible-test'
 
   MAPPING_FILES = {
-      cwe: '../data/cwe-nist-mapping.csv'.freeze,
-      owasp: '../data/owasp-nist-mapping.csv'.freeze,
-  }
+    cwe: '../data/cwe-nist-mapping.csv'.freeze,
+      owasp: '../data/owasp-nist-mapping.csv'.freeze
+  }.freeze
 
   sonar_mapper = HeimdallTools::SonarQubeMapper.new(project_name, url)
-  File.open("sonarqube_hdf_output.json", "w") do |f|
+  File.open('sonarqube_hdf_output.json', 'w') do |f|
     f.write(sonar_mapper.to_hdf)
   end
 
 end
-
