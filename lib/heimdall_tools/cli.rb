@@ -23,6 +23,17 @@ module HeimdallTools
       File.write(options[:output], hdf)
     end
 
+    desc 'sonarqube_mapper', 'sonarqube_mapper pulls SonarQube results, for the specified project name, from the API and outputs in HDF format Json to be viewed on Heimdall'
+    long_desc Help.text(:sonarqube_mapper)
+    option :name, required: true, aliases: '-n'
+    option :api_url, required: true, aliases: '-u'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def sonarqube_mapper
+      hdf = HeimdallTools::SonarQubeMapper.new(options[:name], options[:api_url]).to_hdf
+      File.write(options[:output], hdf)
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION

@@ -64,6 +64,22 @@ FLAGS:
 example: heimdall_tools zap_mapper -j zap_results.json -n site_name -o scan_results.json
 ```
 
+## sonarqube_mapper
+
+sonarqube_mapper pulls SonarQube results, for the specified project, from the API and outputs in HDF format Json to be viewed on Heimdall
+
+```
+USAGE: heimdall_tools sonarqube_mapper [OPTIONS] -n <project-name> -u <api-url> -o <scan-results.json>
+
+FLAGS:
+    -n --name <project-name>         : name of the project in SonarQube, aka Project Key
+    -u --api_url <api-url>           : url of the SonarQube Server API. Typically ends with /api.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+```
+
 ## version  
 
 Prints out the gem version
