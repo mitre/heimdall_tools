@@ -2,10 +2,11 @@
 
 # HeimdallTools
 
-HeimdallTools supplies several CLI tools to convert HDF format to be viewable in Heimdall. The converters in version 1.1.1 are:
+HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The converters in version 1.1.1 are from:
 
-* fortify_mapper
-* zap_mapper
+* __sonarqube__ static open source code analysis tool
+* __fortify_mapper__ commercial static code analysis tool
+* __zap_mapper__ OWASP ZAP open source dynamic code analysis tool
 
 # Installation
 
@@ -32,6 +33,21 @@ Clone the repo and install it yourself as:
 On the Command Line, `heimdall_tools help` will print a listing of all the command with a short description.
 For detailed help on any command, run `heimdall_tools help [COMMAND]`. Help can also be called with the `-h, --help` flags after any command, like `heimdall_tools fortify_mapper -h`.
 
+## sonarqube_mapper
+
+sonarqube_mapper pulls SonarQube results, for the specified project, from the API and outputs in HDF format Json to be viewed on Heimdall
+
+```
+USAGE: heimdall_tools sonarqube_mapper [OPTIONS] -n <project-name> -u <api-url> -o <scan-results.json>
+
+FLAGS:
+    -n --name <project-name>         : name of the project in SonarQube, aka Project Key
+    -u --api_url <api-url>           : url of the SonarQube Server API. Typically ends with /api.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+```
 
 ## fortify_mapper
 
@@ -62,22 +78,6 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools zap_mapper -j zap_results.json -n site_name -o scan_results.json
-```
-
-## sonarqube_mapper
-
-sonarqube_mapper pulls SonarQube results, for the specified project, from the API and outputs in HDF format Json to be viewed on Heimdall
-
-```
-USAGE: heimdall_tools sonarqube_mapper [OPTIONS] -n <project-name> -u <api-url> -o <scan-results.json>
-
-FLAGS:
-    -n --name <project-name>         : name of the project in SonarQube, aka Project Key
-    -u --api_url <api-url>           : url of the SonarQube Server API. Typically ends with /api.
-    -o --output <scan-results>       : path to output scan-results json.
-    -V --verbose                     : verbose run [optional].
-
-example: heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
 ```
 
 ## version  
