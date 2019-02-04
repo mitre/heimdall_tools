@@ -99,12 +99,10 @@ To release a new version, update the version number in `version.rb` according to
 
 # License and Author
 
-
 ### Authors
 
 - Author:: Rony Xavier [rx294](https://github.com/rx294)
 - Author:: Dan Mirsky [mirskiy](https://github.com/mirskiy)
-
 
 ### NOTICE   
 
