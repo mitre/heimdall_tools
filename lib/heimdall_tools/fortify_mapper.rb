@@ -4,10 +4,6 @@ require 'nori'
 
 NIST_REFERENCE_NAME = 'Standards Mapping - NIST Special Publication 800-53 Revision 4'.freeze
 
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/CyclomaticComplexity
-
 module HeimdallTools
   class FortifyMapper
     def initialize(fvdl, verbose = false)

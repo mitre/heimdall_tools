@@ -59,8 +59,8 @@ module HeimdallTools
 
     def nist_tag(cweid)
       entries = @cwe_nist_mapping.select { |x| x[:cweid].to_s.eql?(cweid.to_s) }
-      tags = entries.map { |x| x[:nistid] }
-      tags.empty? ? ['unmapped'] : tags
+      tags = entries.map { |x| [x[:nistid], "Rev_#{x[:rev]}"] }
+      tags.empty? ? ['unmapped'] : tags.flatten.uniq
     end
 
     def impact(riskcode)
@@ -100,7 +100,7 @@ module HeimdallTools
     def to_hdf
       inpsec_profile = {}
 
-      inpsec_profile['name'] = 'OWASP ZAP Scan'
+      inpsec_profile['name'] = "#{@host} OWASP ZAP Scan"
       inpsec_profile['version'] = @timestamp
 
       inpsec_profile['controls'] = []
@@ -112,7 +112,7 @@ module HeimdallTools
         @item['desc']               = Nokogiri::HTML(alert[:desc]).text
         @item['impact']             = impact(alert[:riskcode]).to_s
         @item['tags']               = {}
-        @item['tags']['nist']       = [nist_tag(alert[:cweid]), 'Rev_4'].flatten
+        @item['tags']['nist']       = nist_tag(alert[:cweid])
         @item['tags']['cweid']      = alert[:cweid].to_s
         @item['tags']['wascid']     = alert[:wascid].to_s
         @item['tags']['sourceid']   = alert[:sourceid].to_s

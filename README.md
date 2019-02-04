@@ -94,7 +94,7 @@ This gem was developed using the [CLI Template](https://github.com/tongueroo/cli
 
 There are a set of unit tests. Run `rake test` to run the tests.
 
-To release a new version, update the version number in `version.rb` according to the [Semantic Versioning Policy](https://semver.org/). Then, run `bundle exec rake release` which will create a git tag for the specified version, push git commits and tags, and push the `.gem` file to [github.com](https://github.com/mitre/inspec_tools).
+To release a new version, update the version number in `version.rb` according to the [Semantic Versioning Policy](https://semver.org/). Then, run `bundle exec rake release` which will create a git tag for the specified version, push git commits and tags, and push the `.gem` file to [github.com](https://github.com/mitre/heimdall_tools).
 
 ### NOTICE
 

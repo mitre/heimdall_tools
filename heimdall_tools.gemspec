@@ -10,9 +10,9 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name          = 'heimdall_tools'
   spec.version       = HeimdallTools::VERSION
   spec.authors       = ['Robert Thew', 'Rony Xavier', 'Aaron Lippold']
-  spec.email         = ['rthew@mitre.org']
-  spec.summary       = 'Converter utils for Inspec'
-  spec.description   = 'Converter utils for Inspec that can be included as a gem or used from the command line'
+  spec.email         = ['rxavier@mitre.org']
+  spec.summary       = 'Convert Forify, Openzap and Sonarqube results to HDF'
+  spec.description   = 'Converter utils that can be included as a gem or used from the command line'
   spec.homepage      = 'https://github.com/mitre/heimdall_tools'
   spec.license       = 'Apache-2.0'
 
@@ -36,7 +36,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_dependency 'nori', '~> 0'
   spec.add_dependency 'OptionParser', '~> 0'
   spec.add_dependency 'thor', '~> 0.19'
-  spec.add_development_dependency 'bundler', '~> 1.12'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'pry', '~> 0'
   spec.add_dependency 'rake', '~> 10.0'
