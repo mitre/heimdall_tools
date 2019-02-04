@@ -4,9 +4,9 @@
 
 HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The converters in version 1.1.1 are from:
 
-* __sonarqube__ static open source code analysis tool
-* __fortify_mapper__ commercial static code analysis tool
-* __zap_mapper__ OWASP ZAP open source dynamic code analysis tool
+* __sonarqube__ - open-source static code analysis tool
+* __fortify_mapper__ - commercial static code analysis tool
+* __zap_mapper__ - OWASP ZAP - open-source dynamic code analysis tool
 
 # Installation
 
