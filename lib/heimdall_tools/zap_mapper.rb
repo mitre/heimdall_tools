@@ -47,7 +47,7 @@ module HeimdallTools
       finding = {}
       finding['status'] = 'failed'
       finding['code_desc'] = format_code_desc(instance)
-      finding['run_time'] = 'N/A'
+      finding['run_time'] = NA_TAG
       finding['start_time'] = @timestamp
       finding
     end
