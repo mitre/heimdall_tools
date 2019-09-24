@@ -237,7 +237,7 @@ class Control
           nist: get_nist_tags
         },
         results: @findings.map(&:get_result),
-        code: '', # This should be the inspec code for the control, which we don't have
+        code: NA_TAG, # This should be the inspec code for the control, which we don't have
         id: @key,
         descriptions: NA_ARRAY,
         refs: NA_ARRAY,
