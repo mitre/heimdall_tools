@@ -1,6 +1,7 @@
 require 'json'
 require 'nokogiri'
 require 'csv'
+require 'heimdall_tools/hdf'
 
 CWE_NIST_MAPPING_FILE = './lib/data/cwe-nist-mapping.csv'.freeze
 
@@ -46,6 +47,8 @@ module HeimdallTools
       finding = {}
       finding['status'] = 'failed'
       finding['code_desc'] = format_code_desc(instance)
+      finding['run_time'] = 'N/A'
+      finding['start_time'] = @timestamp
       finding
     end
 
@@ -98,13 +101,7 @@ module HeimdallTools
     end
 
     def to_hdf
-      inpsec_profile = {}
-
-      inpsec_profile['name'] = "#{@host} OWASP ZAP Scan"
-      inpsec_profile['version'] = @timestamp
-
-      inpsec_profile['controls'] = []
-
+      controls = []
       @alerts.each do |alert|
         @item = {}
         @item['id']                 = alert[:pluginid].to_s
@@ -122,10 +119,16 @@ module HeimdallTools
         @item['code']               = ''
         @item['results']            = process_instances(alert[:instances])
 
-        inpsec_profile['controls'] << @item
+        controls << @item
       end
-      fix_duplicates(inpsec_profile['controls'])
-      inpsec_profile.to_json
+      fix_duplicates(controls)
+
+      results = HeimdallDataFormat.new(profile_name: 'OWASP ZAP Scan',
+                                       version: @zap_verison,
+                                       title: "OWASP ZAP Scan of Host: #{@host}",
+                                       summary: "OWASP ZAP Scan of Host: #{@host}",
+                                       controls: controls)
+      results.to_hdf
     end
   end
 end

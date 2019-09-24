@@ -74,6 +74,51 @@ module HeimdallTools
     end
 
     def to_hdf
+
+      # results_json = {}
+      # results_json['platform'] = {}
+      # results_json['platform']['name'] = 'Heimdall Tools'
+      # results_json['platform']['release'] = HeimdallTools::VERSION
+      # results_json['version'] = HeimdallTools::VERSION
+
+      # results_json['statistics'] = {}
+      # results_json['statistics']['duration'] = NA_TAG
+
+      # results_json['profiles'] = []
+
+      # profile_block = {}
+      # profile_block['name'] = 'Fortify Static Analyzer Scan'
+      # profile_block['version'] = @fortify_version
+
+      # profile_block['sha256'] = NA_TAG
+      # profile_block['title'] = 'Fortify Static Analyzer Scan'
+      # profile_block['maintainer'] = NA_TAG
+      # profile_block['summary'] = "Fortify Static Analyzer Scan of UUID: #{@uuid}"
+      # profile_block['license'] = NA_TAG
+      # profile_block['copyright'] = NA_TAG
+      # profile_block['copyright_email'] = NA_TAG
+      # profile_block['supports'] = []
+      # profile_block['attributes'] = []
+      # profile_block['depends'] = []
+      # profile_block['groups'] = []
+      # profile_block['status'] = 'loaded'
+
+      # profile_block['controls'] = []
+      # @rules.each do |rule|
+      #   @item = {}
+      #   @item['id']           = rule['@classID']
+      #   @item['desc']         = rule['Explanation']
+      #   @item['title']        = rule['Abstract']
+      #   @item['impact']       = impact(rule['@classID'])
+      #   @item['code']         = NA_TAG
+      #   @item['results']      = []
+      #   @item['results']      = primaries(@item['id'])
+      #   @item['tags']         = {}
+      #   @item['tags']['nist'] = [nist_tag(rule).to_s, 'Rev_4']
+      #   profile_block['controls'] << @item
+      # end
+      # results_json['profiles'] << profile_block
+
       controls = []
       @rules.each do |rule|
         @item = {}

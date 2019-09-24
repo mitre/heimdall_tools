@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 require 'csv'
+require 'heimdall_tools/hdf'
 
 MAPPING_FILES = {
   cwe: './lib/data/cwe-nist-mapping.csv'.freeze,
@@ -128,13 +129,12 @@ module HeimdallTools
 
     # Returns a report in HDF format
     def to_hdf
-      {
-        controls: @controls.map(&:hdf),
-          # currently on heimdall version tag is displayed as time on profile view
-          # this wil be updated after heimdal update to fix this
-          version: Time.now.strftime("%a,%d %b %Y %X"),
-          name: "#{@project_name} SonarQube Scan"
-      }.to_json
+      results = HeimdallDataFormat.new(profile_name: "SonarQube Scan",
+                                       version: @api.query_version,
+                                       title: "SonarQube Scan of Project: #{@project_name}",
+                                       summary: "SonarQube Scan of Project: #{@project_name}",
+                                       controls: @controls.map(&:hdf))
+      results.to_hdf
     end
   end
 end
@@ -266,8 +266,10 @@ class Finding
 
     snip_html = "StartLine: #{snip_start}, EndLine: #{snip_end}<br>Code:<pre>#{snip}</pre>"
     {
-      status: 'failed',
-        code_desc: "Path:#{component}:#{vuln_start}:#{vuln_end} #{snip_html}"
+        status: 'failed',
+        code_desc: "Path:#{component}:#{vuln_start}:#{vuln_end} #{snip_html}",
+        run_time: 'N/A',
+        start_time: Time.now.strftime("%a,%d %b %Y %X")
     }
   end
 end
