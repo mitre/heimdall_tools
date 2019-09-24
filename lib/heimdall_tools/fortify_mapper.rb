@@ -77,15 +77,18 @@ module HeimdallTools
       controls = []
       @rules.each do |rule|
         @item = {}
-        @item['id']           = rule['@classID']
-        @item['desc']         = rule['Explanation']
-        @item['title']        = rule['Abstract']
-        @item['impact']       = impact(rule['@classID'])
-        @item['code']         = NA_TAG
-        @item['results']      = []
-        @item['results']      = primaries(@item['id'])
-        @item['tags']         = {}
-        @item['tags']['nist'] = [nist_tag(rule).to_s, 'Rev_4']
+        @item['id']              = rule['@classID']
+        @item['desc']            = rule['Explanation']
+        @item['title']           = rule['Abstract']
+        @item['impact']          = impact(rule['@classID'])
+        @item['descriptions']    = NA_ARRAY
+        @item['refs']            = NA_ARRAY
+        @item['source_location'] = NA_HASH
+        @item['code']            = NA_TAG
+        @item['results']         = []
+        @item['results']         = primaries(@item['id'])
+        @item['tags']            = {}
+        @item['tags']['nist']    = [nist_tag(rule).to_s, 'Rev_4']
         controls << @item
       end
       results = HeimdallDataFormat.new(profile_name: 'Fortify Static Analyzer Scan',

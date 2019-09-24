@@ -107,8 +107,11 @@ module HeimdallTools
         @item['id']                 = alert[:pluginid].to_s
         @item['title']              = alert[:name].to_s
         @item['desc']               = Nokogiri::HTML(alert[:desc]).text
-        @item['impact']             = impact(alert[:riskcode]).to_s
+        @item['impact']             = impact(alert[:riskcode])
         @item['tags']               = {}
+        @item['descriptions']       = NA_ARRAY
+        @item['refs']               = NA_ARRAY
+        @item['source_location']    = NA_HASH
         @item['tags']['nist']       = nist_tag(alert[:cweid])
         @item['tags']['cweid']      = alert[:cweid].to_s
         @item['tags']['wascid']     = alert[:wascid].to_s

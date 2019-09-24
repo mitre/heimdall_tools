@@ -238,7 +238,10 @@ class Control
         },
         results: @findings.map(&:get_result),
         code: '', # This should be the inspec code for the control, which we don't have
-        id: @key
+        id: @key,
+        descriptions: NA_ARRAY,
+        refs: NA_ARRAY,
+        source_location: NA_HASH,
     }
   end
 end

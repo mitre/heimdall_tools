@@ -3,8 +3,9 @@ require 'nokogiri'
 require 'nori'
 require 'heimdall_tools/version'
 
-NA_TAG = 'N/A'.freeze
+NA_TAG = nil.freeze
 NA_ARRAY = [].freeze
+NA_HASH = {}.freeze
 
 PLATFORM_NAME = 'Heimdall Tools'.freeze
 
