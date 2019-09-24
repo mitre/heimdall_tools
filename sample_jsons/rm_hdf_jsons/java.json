@@ -1,0 +1,78 @@
+{
+    "controls": [
+        {
+            "code": "",
+            "desc": "<p><code>enum</code>s are generally thought of as constant, but an <code>enum</code> with a <code>public</code> field or <code>public</code> setter is\nnot only non-constant, but also vulnerable to malicious code. Ideally fields in an <code>enum</code> are <code>private</code> and set in the\nconstructor, but if that's not possible, their visibility should be reduced as much as possible.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\npublic enum Continent {\n\n  NORTH_AMERICA (23, 24709000),\n  // ...\n  EUROPE (50, 39310000);\n\n  public int countryCount;  // Noncompliant\n  private int landMass;\n\n  Continent(int countryCount, int landMass) {\n    // ...\n  }\n\n  public void setLandMass(int landMass) {  // Noncompliant\n    this.landMass = landMass;\n  }\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\npublic enum Continent {\n\n  NORTH_AMERICA (23, 24709000),\n  // ...\n  EUROPE (50, 39310000);\n\n  private int countryCount;\n  private int landMass;\n\n  Continent(int countryCount, int landMass) {\n    // ...\n  }\n</pre>",
+            "id": "squid:S3066",
+            "impact": 0.5,
+            "results": [
+                {
+                    "code_desc": "Path:ansible-test:src/main/java/com/mkyong/common/controller/BadEnum.java:6:6 StartLine: 3, EndLine: 9<br>Code:<pre>  EUROPE (50, 39310000);\n\n  public int countryCount;  // Noncompliant\n  private int landMass;\n\n  Continent(int countryCount, int landMass) {\n    this.countryCount = countryCount;</pre>",
+                    "status": "failed"
+                }
+            ],
+            "tags": {
+                "nist": [
+                    ""
+                ]
+            },
+            "title": "\"enum\" fields should not be publicly mutable"
+        },
+        {
+            "code": "",
+            "desc": "<p>Public class variable fields do not respect the encapsulation principle and has three main disadvantages:</p>\n<ul>\n  <li> Additional behavior such as validation cannot be added. </li>\n  <li> The internal representation is exposed, and cannot be changed afterwards. </li>\n  <li> Member values are subject to change from anywhere in the code and may not meet the programmer's assumptions. </li>\n</ul>\n<p>By using private attributes and accessor methods (set and get), unauthorized modifications are prevented.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\npublic class MyClass {\n\n  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked\n\n  public String firstName;                       // Noncompliant\n\n}\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\npublic class MyClass {\n\n  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked\n\n  private String firstName;                      // Compliant\n\n  public String getFirstName() {\n    return firstName;\n  }\n\n  public void setFirstName(String firstName) {\n    this.firstName = firstName;\n  }\n\n}\n</pre>\n<h2>Exceptions</h2>\n<p>Because they are not modifiable, this rule ignores <code>public final</code> fields.</p>\n<h2>See</h2>\n<ul>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/493.html\">MITRE, CWE-493</a> - Critical Public Variable Without Final Modifier </li>\n</ul>",
+            "id": "squid:ClassVariableVisibilityCheck",
+            "impact": 0.5,
+            "results": [
+                {
+                    "code_desc": "Path:ansible-test:src/main/java/com/mkyong/common/controller/BadEnum.java:6:6 StartLine: 3, EndLine: 9<br>Code:<pre>  EUROPE (50, 39310000);\n\n  public int countryCount;  // Noncompliant\n  private int landMass;\n\n  Continent(int countryCount, int landMass) {\n    this.countryCount = countryCount;</pre>",
+                    "status": "failed"
+                }
+            ],
+            "tags": {
+                "nist": [
+                    "SI-11", "Rev_4"
+                ]
+            },
+            "title": "Class variable fields should not have public accessibility"
+        },
+        {
+            "code": "",
+            "desc": "<p>The <code>java.security.SecureRandom</code> class provides a strong random number generator (RNG) appropriate for cryptography. However, seeding it\nwith a constant or another predictable value will weaken it significantly. In general, it is much safer to rely on the seed provided by the\n<code>SecureRandom</code> implementation.</p>\n<p>This rule raises an issue when <code>SecureRandom.setSeed()</code> or <code>SecureRandom(byte[])</code> are called with a seed that is either\nof:</p>\n<ul>\n  <li> a constant </li>\n  <li> <code>System.currentTimeMillis()</code> </li>\n</ul>\n<h2>Noncompliant Code Example</h2>\n<pre>\nSecureRandom sr = new SecureRandom();\nsr.setSeed(123456L); // Noncompliant\nint v = sr.next(32);\n\nsr = new SecureRandom(\"abcdefghijklmnop\".getBytes(\"us-ascii\")); // Noncompliant\nv = sr.next(32);\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\nSecureRandom sr = new SecureRandom();\nint v = sr.next(32);\n</pre>\n<h2>See</h2>\n<ul>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/330.html\">MITRE, CWE-330</a> - Use of Insufficiently Random Values </li>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/332.html\">MITRE, CWE-332</a> - Insufficient Entropy in PRNG </li>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/336.html\">MITRE, CWE-336</a> - Same Seed in Pseudo-Random Number Generator (PRNG) </li>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/337.html\">MITRE, CWE-337</a> - Predictable Seed in Pseudo-Random Number Generator (PRNG) </li>\n  <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>\n  <li> <a href=\"https://wiki.sei.cmu.edu/confluence/display/java/MSC63-J.+Ensure+that+SecureRandom+is+properly+seeded\">CERT, MSC63J.</a> - Ensure that\n  SecureRandom is properly seeded </li>\n</ul>",
+            "id": "squid:S4347",
+            "impact": 0.5,
+            "results": [
+                {
+                    "code_desc": "Path:ansible-test:src/main/java/com/mkyong/common/controller/Random.java:10:10 StartLine: 7, EndLine: 13<br>Code:<pre>  {\n    SecureRandom sr = new SecureRandom();\n    sr.setSeed(123456L); // Noncompliant\n    System.out.println(sr.nextInt(32));\n  }\n}</pre>",
+                    "status": "failed"
+                }
+            ],
+            "tags": {
+                "nist": [
+                    "SC-13", "Rev_4"
+                ]
+            },
+            "title": "\"SecureRandom\" seeds should not be predictable"
+        },
+        {
+            "code": "",
+            "desc": "<p>The Advanced Encryption Standard (AES) encryption algorithm can be used with various modes. Some combinations are not secured:</p>\n<ul>\n  <li> Electronic Codebook (ECB) mode: Under a given key, any given plaintext block always gets encrypted to the same ciphertext block. Thus, it does\n  not hide data patterns well. In some senses, it doesn't provide serious message confidentiality, and it is not recommended for use in cryptographic\n  protocols at all. </li>\n  <li> Cipher Block Chaining (CBC) with PKCS#5 padding (or PKCS#7) is susceptible to padding oracle attacks. </li>\n</ul>\n<p>In both cases, Galois/Counter Mode (GCM) with no padding should be preferred.</p>\n<p>This rule raises an issue when a <code>Cipher</code> instance is created with either ECB or CBC/PKCS5Padding mode.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\nCipher c1 = Cipher.getInstance(\"AES/ECB/NoPadding\"); // Noncompliant\nCipher c2 = Cipher.getInstance(\"AES/CBC/PKCS5Padding\"); // Noncompliant\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\nCipher c = Cipher.getInstance(\"AES/GCM/NoPadding\");\n</pre>\n<h2>See</h2>\n<ul>\n  <li> <a href=\"http://cwe.mitre.org/data/definitions/327.html\">MITRE, CWE-327</a> - Use of a Broken or Risky Cryptographic Algorithm </li>\n  <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>\n  <li> <a href=\"https://www.securecoding.cert.org/confluence/x/VwAZAg\">CERT, MSC61-J.</a> - Do not use insecure or weak cryptographic algorithms </li>\n  <li> <a href=\"https://www.sans.org/top25-software-errors/#cat3\">SANS Top 25</a> - Porous Defenses </li>\n  <li> <a href=\"http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38a.pdf\">Recommendation for Block Cipher Modes of Operation</a>\n  </li>\n  <li> Derived from FindSecBugs rule <a href=\"https://find-sec-bugs.github.io/bugs.htm#ECB_MODE\">ECB_MODE</a> </li>\n  <li> Derived from FindSecBugs rule <a href=\"https://find-sec-bugs.github.io/bugs.htm#PADDING_ORACLE\">PADDING_ORACLE</a> </li>\n</ul>",
+            "id": "squid:S4432",
+            "impact": 0.5,
+            "results": [
+                {
+                    "code_desc": "Path:ansible-test:src/main/java/com/mkyong/common/controller/Encrypt.java:19:19 StartLine: 16, EndLine: 22<br>Code:<pre>  {\n    //Cipher c1 = Cipher.getInstance(\"AES/ECB/NoPadding\"); // Noncompliant\n    Cipher c1 = Cipher.getInstance(\"AES/CBC/PKCS5Padding\"); // Noncompliant\n    byte[] keyBytes = new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,\n                                   0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };\n\n    SecretKeySpec key = new SecretKeySpec(keyBytes, \"AES\");</pre>",
+                    "status": "failed"
+                }
+            ],
+            "tags": {
+                "nist": [
+                    "SC-13", "Rev_4"
+                ]
+            },
+            "title": "AES encryption algorithm should be used with secured mode"
+        }
+    ],
+    "name": "ansible-test SonarQube Scan",
+    "version": "Sun,03 Feb 2019 20:14:28"
+}
