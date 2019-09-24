@@ -1,6 +1,7 @@
 require 'json'
 require 'nokogiri'
 require 'nori'
+require 'heimdall_tools/hdf'
 
 NIST_REFERENCE_NAME = 'Standards Mapping - NIST Special Publication 800-53 Revision 4'.freeze
 
@@ -16,6 +17,9 @@ module HeimdallTools
         @vulns = data['FVDL']['Vulnerabilities']['Vulnerability']
         @snippets = data['FVDL']['Snippets']['Snippet']
         @rules = data['FVDL']['Description']
+        @uuid = data['FVDL']['UUID']
+        @fortify_version = data['FVDL']['EngineData']['EngineVersion']
+
       rescue StandardError => e
         raise "Invalid Fortify FVDL file provided Exception: #{e}"
       end
@@ -26,6 +30,8 @@ module HeimdallTools
       finding = {}
       finding['status'] = 'failed'
       finding['code_desc'] = snippet(snippetid)
+      finding['run_time'] = NA_TAG
+      finding['start_time'] = [@timestamp['@date'], @timestamp['@time']].join(' ')
       finding
     end
 
@@ -68,26 +74,26 @@ module HeimdallTools
     end
 
     def to_hdf
-      inpsec_json = {}
-
-      inpsec_json['name'] = 'Fortify Static Analyzer Scan'
-      inpsec_json['version'] = [@timestamp['@date'], @timestamp['@time']].join(' ')
-      inpsec_json['controls'] = []
-
+      controls = []
       @rules.each do |rule|
         @item = {}
         @item['id']           = rule['@classID']
         @item['desc']         = rule['Explanation']
         @item['title']        = rule['Abstract']
         @item['impact']       = impact(rule['@classID'])
-        @item['code']         = ''
+        @item['code']         = NA_TAG
         @item['results']      = []
         @item['results']      = primaries(@item['id'])
         @item['tags']         = {}
         @item['tags']['nist'] = [nist_tag(rule).to_s, 'Rev_4']
-        inpsec_json['controls'] << @item
+        controls << @item
       end
-      inpsec_json.to_json
+      results = HeimdallDataFormat.new(profile_name: 'Fortify Static Analyzer Scan',
+                                       version: @fortify_version,
+                                       title: 'Fortify Static Analyzer Scan',
+                                       summary: "Fortify Static Analyzer Scan of UUID: #{@uuid}",
+                                       controls: controls)
+      results.to_hdf
     end
   end
 end
