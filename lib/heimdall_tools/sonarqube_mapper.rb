@@ -271,7 +271,7 @@ class Finding
     {
         status: 'failed',
         code_desc: "Path:#{component}:#{vuln_start}:#{vuln_end} #{snip_html}",
-        run_time:  NA_TAG,
+        run_time:  NA_FLOAT,
         start_time: Time.now.strftime("%a,%d %b %Y %X")
     }
   end

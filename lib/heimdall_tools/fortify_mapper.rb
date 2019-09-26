@@ -30,7 +30,7 @@ module HeimdallTools
       finding = {}
       finding['status'] = 'failed'
       finding['code_desc'] = snippet(snippetid)
-      finding['run_time'] = NA_TAG
+      finding['run_time'] = NA_FLOAT
       finding['start_time'] = [@timestamp['@date'], @timestamp['@time']].join(' ')
       finding
     end

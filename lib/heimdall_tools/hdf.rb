@@ -2,10 +2,12 @@ require 'json'
 require 'nokogiri'
 require 'nori'
 require 'heimdall_tools/version'
+require 'openssl'
 
 NA_TAG = nil.freeze
 NA_ARRAY = [].freeze
 NA_HASH = {}.freeze
+NA_FLOAT = 0.0.freeze
 
 PLATFORM_NAME = 'Heimdall Tools'.freeze
 
@@ -41,10 +43,8 @@ module HeimdallTools
       @results_json['profiles'] = []
 
       profile_block = {}
-
       profile_block['name']            = profile_name
       profile_block['version']         = version
-      profile_block['sha256']          = sha256
       profile_block['title']           = title
       profile_block['maintainer']      = maintainer
       profile_block['summary']         = summary
@@ -56,8 +56,8 @@ module HeimdallTools
       profile_block['depends']         = depends
       profile_block['groups']          = groups
       profile_block['status']          = status
-
-      profile_block['controls'] = controls
+      profile_block['controls']        = controls
+      profile_block['sha256']          = OpenSSL::Digest::SHA256.digest(profile_block.to_s).unpack("H*")[0]
       @results_json['profiles'] << profile_block
     end
 
