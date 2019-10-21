@@ -1,0 +1,37 @@
+name: heimdall_tools
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    name: Build and test heimdall_tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout heimdall_tools
+        uses: actions/checkout@v1
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+      - name: Run bundle install
+        run: |
+          bundle install
+      - name: Run rake test
+        run: |
+          rake test
+#      - name: Install rubocop
+#        run: |
+#          gem install rubocop
+#      - name: Run rubocop
+#        run: |
+#          rubocop
+      - name: Build heimdall_tools gem 
+        run: | 
+          gem build heimdall_tools.gemspec
+      - name: Install heimdall_tools gem
+        run: |
+          gem install heimdall_tools
+      - name: Run heimdall_tools
+        run: |
+          heimdall_tools
+        env:
+          CI: true
+        
