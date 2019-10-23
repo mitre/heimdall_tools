@@ -1,4 +1,4 @@
-# HeimdallTools
+# Heimdall Tools
 
 HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The converters in version 1.1.1 are from:
 
