@@ -1,6 +1,6 @@
 **Release:** 
-v1.3.2
+v1.3.3
 <br><br>**Date:** 
-2019-10-23 14:38:11 -0400
+2019-10-23 14:38:34 -0400
 <br><br>**Commit:** 
-74ccd06bcb41f4e00afcb1a235edb461e456d89f
+06391f60b93cab1d64521d1c68f61addfda95df0
