@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.3.2](https://github.com/mitre/heimdall_tools/tree/v1.3.2) (2019-12-27)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.1...v1.3.2)
+
+**Merged pull requests:**
+
+- Adding dockerfile for heimdall tools [\#15](https://github.com/mitre/heimdall_tools/pull/15) ([rx294](https://github.com/rx294))
+
 ## [v1.3.1](https://github.com/mitre/heimdall_tools/tree/v1.3.1) (2019-12-27)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.0...v1.3.1)
