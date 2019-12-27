@@ -33,7 +33,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_dependency 'activesupport', '>= 4.2.3'
   spec.add_dependency 'colorize', '~> 0'
   spec.add_dependency 'nokogiri', '~> 1.8'
-  spec.add_dependency 'nori', '~> 0'
+  spec.add_dependency 'nori', '~> 2.6.0'
   spec.add_dependency 'OptionParser', '~> 0'
   spec.add_dependency 'thor', '~> 0.19'
   spec.add_development_dependency 'bundler'
