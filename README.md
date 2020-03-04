@@ -47,9 +47,11 @@ FLAGS:
     -o --output <scan-results>       : path to output scan-results json.
     -V --verbose                     : verbose run [optional].
 
-example: heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+example: 
 
-authenticated example: heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api --auth admin:admin -o scan_results.json
+heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+
+heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api --auth admin:admin -o scan_results.json
 ```
 
 ## fortify_mapper
