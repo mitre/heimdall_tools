@@ -17,7 +17,7 @@ IMPACT_MAPPING = {
 }.freeze
 
 def check_response(response)
-  raise "API Error: #{response.status}\n#{response.body}" unless response.ok?
+  raise "API Error: #{response.response}\n#{response.body}" unless response.ok?
 end
 
 class SonarQubeApi
