@@ -1,12 +1,20 @@
 # Changelog
 
+## [v1.3.4](https://github.com/mitre/heimdall_tools/tree/v1.3.4) (2020-03-04)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.3...v1.3.4)
+
+**Closed issues:**
+
+- Support Authenticated Sonarqube API  for sonarqube\_mapper [\#18](https://github.com/mitre/heimdall_tools/issues/18)
+
 ## [v1.3.3](https://github.com/mitre/heimdall_tools/tree/v1.3.3) (2020-03-04)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.2...v1.3.3)
 
 **Merged pull requests:**
 
-- Fix 18 [\#20](https://github.com/mitre/heimdall_tools/pull/20) ([rx294](https://github.com/rx294))
+- Sonarqube authentication option [\#20](https://github.com/mitre/heimdall_tools/pull/20) ([rx294](https://github.com/rx294))
 
 ## [v1.3.2](https://github.com/mitre/heimdall_tools/tree/v1.3.2) (2019-12-27)
 
