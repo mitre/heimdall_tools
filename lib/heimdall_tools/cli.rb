@@ -27,10 +27,11 @@ module HeimdallTools
     long_desc Help.text(:sonarqube_mapper)
     option :name, required: true, aliases: '-n'
     option :api_url, required: true, aliases: '-u'
+    option :auth, type: :string, required: false
     option :output, required: true, aliases: '-o'
     option :verbose, type: :boolean, aliases: '-V'
     def sonarqube_mapper
-      hdf = HeimdallTools::SonarQubeMapper.new(options[:name], options[:api_url]).to_hdf
+      hdf = HeimdallTools::SonarQubeMapper.new(options[:name], options[:api_url], options[:auth]).to_hdf
       File.write(options[:output], hdf)
     end
 

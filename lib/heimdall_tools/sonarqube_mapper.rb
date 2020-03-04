@@ -17,7 +17,7 @@ IMPACT_MAPPING = {
 }.freeze
 
 def check_response(response)
-  raise "API Error: #{response.status}\n#{response.body}" unless response.ok?
+  raise "API Error: #{response.response}\n#{response.body}" unless response.ok?
 end
 
 class SonarQubeApi
@@ -29,8 +29,21 @@ class SonarQubeApi
 
   PAGE_SIZE = 100
 
-  def initialize(api_url)
+  def initialize(api_url, auth=nil)
     @api_url = api_url
+    @auth = auth
+  end
+
+  def query_api(endpoint, params={})
+    creds = {
+              username: @auth.split(':')[0],
+              password: @auth.split(':')[1]
+    } unless @auth.nil?
+
+    response = HTTParty.get(@api_url + endpoint, { query: params, basic_auth: creds })
+    check_response response
+    puts response
+    response
   end
 
   # Query issues endpoint, get all vulnerabilities
@@ -46,8 +59,7 @@ class SonarQubeApi
     }
 
     loop do # Get all pages
-      response = HTTParty.get(@api_url + ISSUES_ENDPOINT, { query: params })
-      check_response response
+      response = query_api(ISSUES_ENDPOINT, params)
       issues += response['issues']
 
       if params[:p] * PAGE_SIZE >= response['paging']['total']
@@ -65,8 +77,7 @@ class SonarQubeApi
     params = {
       key: rule
     }
-    response = HTTParty.get(@api_url + RULE_ENDPOINT, { query: params })
-    check_response response
+    response = query_api(RULE_ENDPOINT, params)
     response['rule']
   end
 
@@ -81,15 +92,13 @@ class SonarQubeApi
     params = {
       key: component
     }
-    response = HTTParty.get(@api_url + SOURCE_ENDPOINT, { query: params })
-    check_response response
+    response = query_api(SOURCE_ENDPOINT, params)
     response.body.split("\n")[start_line..end_line].join("\n")
   end
 
   # Query the version of the SonarQube server
   def query_version
-    response = HTTParty.get(@api_url + VERSION_ENDPOINT)
-    check_response response
+    response = query_api(VERSION_ENDPOINT)
     response.body
   end
 end
@@ -97,9 +106,9 @@ end
 module HeimdallTools
   class SonarQubeMapper
     # Fetches the necessary data from the API and builds report
-    def initialize(project_name, sonarqube_url)
+    def initialize(project_name, sonarqube_url, auth=nil)
       @project_name = project_name
-      @api = SonarQubeApi.new(sonarqube_url)
+      @api = SonarQubeApi.new(sonarqube_url,auth)
 
       @mappings = load_nist_mappings
       @findings = @api.query_issues(@project_name).map { |x| Finding.new(x, @api) }
