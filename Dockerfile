@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/ubi8/ruby-26
-ENV HEIMDALLTOOLS_VERSION 1.3.1
+ENV HEIMDALLTOOLS_VERSION 1.3.3
 MAINTAINER rx294@nyu.edu
 LABEL name="Heimdall Tools" \
       vendor="MTIRE" \
