@@ -42,7 +42,6 @@ class SonarQubeApi
 
     response = HTTParty.get(@api_url + endpoint, { query: params, basic_auth: creds })
     check_response response
-    puts response
     response
   end
 
