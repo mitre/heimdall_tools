@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.6](https://github.com/mitre/heimdall_tools/tree/v1.3.6) (2020-03-05)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.5...v1.3.6)
+
 ## [v1.3.5](https://github.com/mitre/heimdall_tools/tree/v1.3.5) (2020-03-05)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.4...v1.3.5)
