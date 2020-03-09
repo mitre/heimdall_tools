@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.3.8](https://github.com/mitre/heimdall_tools/tree/v1.3.8) (2020-03-09)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.7...v1.3.8)
+
+**Closed issues:**
+
+- \[BUG\] | sonarqube\_mapper is not handling NIST mapping correctly [\#21](https://github.com/mitre/heimdall_tools/issues/21)
+
+**Merged pull requests:**
+
+- Fixes \#21 \[BUG\] | sonarqube\_mapper is not handling NIST mapping correctly [\#22](https://github.com/mitre/heimdall_tools/pull/22) ([rx294](https://github.com/rx294))
+
 ## [v1.3.7](https://github.com/mitre/heimdall_tools/tree/v1.3.7) (2020-03-06)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.6...v1.3.7)
