@@ -128,7 +128,7 @@ module HeimdallTools
                                             headers: true,
                                             header_converters: :symbol,
                                             converters: :all })
-        mappings[mapping_type] = Hash[csv_data.map { |row|
+        mappings[mapping_type] = Hash[csv_data.reject{ |row| row[:nistid].nil? }.map { |row|
           [row[(mapping_type.to_s.downcase + 'id').to_sym].to_s, [row[:nistid], "Rev_#{row[:rev]}"]]
         }]
       end
@@ -156,17 +156,20 @@ class Control
   TAG_DATA[:cwe] = {
     # Some rules with cwe tag don't have cwe number in description!
     # Currently only squid:S2658, but it has OWASP tag so we can use that.
-    regex: 'cwe.mitre.org/data/definitions/([^\.]*)' # Sometimes the "http://" is not part of the url
+    regex: 'cwe.mitre.org/data/definitions/(\d*)' # Sometimes the "http://" is not part of the url
   }
   TAG_DATA[:owasp] = {
     # Many (19 currently) owasp have don't cwe (ex. squid:S3355)
   }
-  TAG_DATA[:cert] = {
-    # Some rules only have cert tag (ex. kotlin:S1313)
-    # Some rules with cert tag don't actually have cert in description!
-    # Currently only squid:S4434, but it has OWASP tag so we can use that.
-    regex: 'CERT,?\n? ([^<]*)\.?<'
-  }
+
+  # CERT data mapping is deactivated for now until CERT -> NIST 800-53 mapping is available.
+  # TAG_DATA[:cert] = {
+  #   # Some rules only have cert tag (ex. kotlin:S1313)
+  #   # Some rules with cert tag don't actually have cert in description!
+  #   # Currently only squid:S4434, but it has OWASP tag so we can use that.
+  #   regex: 'CERT,?\n? ([^<]*)\.?<'
+  # }
+
   # All sans-tagged rules have CWE number, so no need to map SANS
   # There some tags which we can map directly (ex. denial-of-service)
   # But there are currently no rules with such a tag that don't have a better tag (ex. cwe)
