@@ -5,8 +5,7 @@ gemspec
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'json'
-gem 'nori',  '>=2.6.0'
-gem 'nokogiri'
+gem 'nokogiri', '>=1.10.9'
 gem 'csv'
 gem 'httparty'
 gem 'openssl'
