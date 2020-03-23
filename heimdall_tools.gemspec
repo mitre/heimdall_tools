@@ -30,13 +30,15 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activesupport', '>= 4.2.3'
-  spec.add_dependency 'colorize', '~> 0'
-  spec.add_dependency 'nokogiri', '~> 1.8'
-  spec.add_dependency 'OptionParser', '~> 0'
-  spec.add_dependency 'thor', '~> 0.19'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.10.9'
+  spec.add_runtime_dependency 'thor', '~> 0.19'
+  spec.add_runtime_dependency 'json'
+  spec.add_runtime_dependency 'csv'
+  spec.add_runtime_dependency 'httparty'
+  spec.add_runtime_dependency 'openssl'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'pry', '~> 0'
-  spec.add_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 10.0'
 end
