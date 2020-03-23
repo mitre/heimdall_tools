@@ -1,7 +1,6 @@
 require 'json'
-require 'nokogiri'
-require 'nori'
 require 'heimdall_tools/hdf'
+require 'utilities/xml_to_hash'
 
 NIST_REFERENCE_NAME = 'Standards Mapping - NIST Special Publication 800-53 Revision 4'.freeze
 
@@ -12,7 +11,7 @@ module HeimdallTools
       @verbose = verbose
 
       begin
-        data = Nori.new(empty_tag_value: true).parse(fvdl)
+        data = xml_to_hash(fvdl)
         @timestamp = data['FVDL']['CreatedTS']
         @vulns = data['FVDL']['Vulnerabilities']['Vulnerability']
         @snippets = data['FVDL']['Snippets']['Snippet']
@@ -26,12 +25,12 @@ module HeimdallTools
     end
 
     def process_entry(entry)
-      snippetid = entry['Node']['SourceLocation']['@snippet']
+      snippetid = entry['Node']['SourceLocation']['snippet']
       finding = {}
       finding['status'] = 'failed'
       finding['code_desc'] = snippet(snippetid)
       finding['run_time'] = NA_FLOAT
-      finding['start_time'] = [@timestamp['@date'], @timestamp['@time']].join(' ')
+      finding['start_time'] = [@timestamp['date'], @timestamp['time']].join(' ')
       finding
     end
 
@@ -54,11 +53,11 @@ module HeimdallTools
     end
 
     def snippet(snippetid)
-      snippet = @snippets.select { |x| x['@id'].eql?(snippetid) }.first
+      snippet = @snippets.select { |x| x['id'].eql?(snippetid) }.first
       "\nPath: #{snippet['File']}\n" \
       "StartLine: #{snippet['StartLine']}, " \
       "EndLine: #{snippet['EndLine']}\n" \
-      "Code:\n#{snippet['Text'].strip}" \
+      "Code:\n#{snippet['Text']['#cdata-section'].strip}" \
     end
 
     def nist_tag(rule)
@@ -77,10 +76,10 @@ module HeimdallTools
       controls = []
       @rules.each do |rule|
         @item = {}
-        @item['id']              = rule['@classID']
+        @item['id']              = rule['classID']
         @item['desc']            = rule['Explanation']
         @item['title']           = rule['Abstract']
-        @item['impact']          = impact(rule['@classID'])
+        @item['impact']          = impact(rule['classID'])
         @item['descriptions']    = NA_ARRAY
         @item['refs']            = NA_ARRAY
         @item['source_location'] = NA_HASH

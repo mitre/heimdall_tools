@@ -1,6 +1,4 @@
 require 'json'
-require 'nokogiri'
-require 'nori'
 require 'heimdall_tools/version'
 require 'openssl'
 
