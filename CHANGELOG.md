@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.3.9](https://github.com/mitre/heimdall_tools/tree/v1.3.9) (2020-03-23)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.8...v1.3.9)
+
+**Closed issues:**
+
+- Update XML parser [\#26](https://github.com/mitre/heimdall_tools/issues/26)
+
+**Merged pull requests:**
+
+- Update XML parser [\#27](https://github.com/mitre/heimdall_tools/pull/27) ([rx294](https://github.com/rx294))
+
 ## [v1.3.8](https://github.com/mitre/heimdall_tools/tree/v1.3.8) (2020-03-09)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.7...v1.3.8)
