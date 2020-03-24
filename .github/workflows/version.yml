@@ -19,7 +19,7 @@ jobs:
           echo "**Release:** " > VERSION.md
           git describe --tags $(git rev-list --tags --max-count=1) >> VERSION.md
           echo "<br><br>**Date:** " >> VERSION.md
-          $version >> VERSION.md
+          echo $version >> VERSION.md
           echo "<br><br>**Commit:** " >> VERSION.md
           git rev-list --tags --max-count=1 >> VERSION.md
           echo "module HeimdallTools\n  VERSION = '${version//v}'.freeze\nend" > lib/heimdall_tools/version.rb
