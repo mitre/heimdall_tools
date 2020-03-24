@@ -1,1 +1,1 @@
-module HeimdallTools\n  VERSION = '1.3.11'.freeze\nend
+module HeimdallTools\n  VERSION = '1.3.12'.freeze\nend
