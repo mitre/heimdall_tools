@@ -15,12 +15,14 @@ jobs:
       - name: Get information for VERSION.md
         run: |
           git pull origin master
+          version=$(git describe --tags $(git rev-list --tags --max-count=1))
           echo "**Release:** " > VERSION.md
           git describe --tags $(git rev-list --tags --max-count=1) >> VERSION.md
           echo "<br><br>**Date:** " >> VERSION.md
-          git show -s --format=%ci $(git rev-list --tags --max-count=1) >> VERSION.md
+          $version >> VERSION.md
           echo "<br><br>**Commit:** " >> VERSION.md
           git rev-list --tags --max-count=1 >> VERSION.md
+          echo "module HeimdallTools\n  VERSION = '${version//v}'.freeze\nend" > lib/heimdall_tools/version.rb
       - name: Commit and push changes to VERSION.md
         uses: github-actions-x/commit@v2.1
         with:
