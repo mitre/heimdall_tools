@@ -22,8 +22,7 @@ jobs:
           echo $version >> VERSION.md
           echo "<br><br>**Commit:** " >> VERSION.md
           git rev-list --tags --max-count=1 >> VERSION.md
-          # deactivating line below until formatting resolved
-          # echo "module HeimdallTools\\n  VERSION = '${version//v}'.freeze\\nend" > lib/heimdall_tools/version.rb
+          sed -e 's/[0-9]\+.[0-9]\+.[0-9]\+/'"${version//v}"'/g' lib/heimdall_tools/version.rb
       - name: Commit and push changes to VERSION.md
         uses: github-actions-x/commit@v2.1
         with:
