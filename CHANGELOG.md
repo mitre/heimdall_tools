@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.15](https://github.com/mitre/heimdall_tools/tree/v1.3.15) (2020-03-25)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.14...v1.3.15)
+
 ## [v1.3.14](https://github.com/mitre/heimdall_tools/tree/v1.3.14) (2020-03-24)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.13...v1.3.14)
@@ -28,10 +32,6 @@
 
 - Update XML parser [\#26](https://github.com/mitre/heimdall_tools/issues/26)
 
-**Merged pull requests:**
-
-- Update XML parser [\#27](https://github.com/mitre/heimdall_tools/pull/27) ([rx294](https://github.com/rx294))
-
 ## [v1.3.8](https://github.com/mitre/heimdall_tools/tree/v1.3.8) (2020-03-09)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.7...v1.3.8)
@@ -42,6 +42,7 @@
 
 **Merged pull requests:**
 
+- Update XML parser [\#27](https://github.com/mitre/heimdall_tools/pull/27) ([rx294](https://github.com/rx294))
 - Fixes \#21 \[BUG\] | sonarqube\_mapper is not handling NIST mapping correctly [\#22](https://github.com/mitre/heimdall_tools/pull/22) ([rx294](https://github.com/rx294))
 
 ## [v1.3.7](https://github.com/mitre/heimdall_tools/tree/v1.3.7) (2020-03-06)
