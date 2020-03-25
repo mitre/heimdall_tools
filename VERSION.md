@@ -1,6 +1,6 @@
 **Release:** 
-v1.3.14
+v1.3.15
 <br><br>**Date:** 
-v1.3.14
+v1.3.15
 <br><br>**Commit:** 
-63a6d3a8e3805492b684d918b1dbf8e3aac6790e
+fc6bbb239cae31f7ba3155ad8ec776090aa60aad
