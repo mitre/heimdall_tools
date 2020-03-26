@@ -41,7 +41,7 @@ sonarqube_mapper pulls SonarQube results, for the specified project, from the AP
 USAGE: heimdall_tools sonarqube_mapper [OPTIONS] -n <project-name> -u <api-url> -o <scan-results.json>
 
 FLAGS:
-    -n --name <project-name>         : name of the project in SonarQube, aka Project Key
+    -n --name <project-key>         : Project Key of the project in SonarQube
     -u --api_url <api-url>           : url of the SonarQube Server API. Typically ends with /api.
     --auth <credentials>              : username:password or token [optional].
     -o --output <scan-results>       : path to output scan-results json.
@@ -49,9 +49,9 @@ FLAGS:
 
 example: 
 
-heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+heimdall_tools sonarqube_mapper -n sonar_project_key -u http://sonar:9000/api -o scan_results.json
 
-heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api --auth admin:admin -o scan_results.json
+heimdall_tools sonarqube_mapper -n sonar_project_key -u http://sonar:9000/api --auth admin:admin -o scan_results.json
 ```
 
 ## fortify_mapper

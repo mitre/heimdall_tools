@@ -2,6 +2,6 @@
 
 Examples:
 
-  heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api -o scan_results.json
+  heimdall_tools sonarqube_mapper -n sonar_project_key -u http://sonar:9000/api -o scan_results.json
   
-  heimdall_tools sonarqube_mapper -n sonar_project -u http://sonar:9000/api --auth admin:admin -o scan_results.json
+  heimdall_tools sonarqube_mapper -n sonar_project_key -u http://sonar:9000/api --auth admin:admin -o scan_results.json
