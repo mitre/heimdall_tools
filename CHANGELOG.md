@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.3.17](https://github.com/mitre/heimdall_tools/tree/v1.3.17) (2020-03-26)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.16...v1.3.17)
+
+**Closed issues:**
+
+- Request New converters [\#23](https://github.com/mitre/heimdall_tools/issues/23)
+
 ## [v1.3.16](https://github.com/mitre/heimdall_tools/tree/v1.3.16) (2020-03-25)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.15...v1.3.16)
