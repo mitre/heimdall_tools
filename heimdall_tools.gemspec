@@ -4,12 +4,11 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'git-version-bump'
+require 'heimdall_tools/version'
 
 Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name          = 'heimdall_tools'
-  spec.version       = GVB.version
-  spec.date          = GVB.date
+  spec.version       = HeimdallTools::VERSION
   spec.authors       = ['Robert Thew', 'Rony Xavier', 'Aaron Lippold']
   spec.email         = ['rxavier@mitre.org']
   spec.summary       = 'Convert Forify, Openzap and Sonarqube results to HDF'
@@ -38,7 +37,6 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_runtime_dependency 'httparty', '~> 0.18.0'
   spec.add_runtime_dependency 'openssl', '~> 2.1'
   spec.add_runtime_dependency 'nori', '~> 2.6'
-  spec.add_runtime_dependency 'git-version-bump', '~> 0.15'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'pry'
