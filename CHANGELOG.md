@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.19...HEAD)
+
+**Fixed bugs:**
+
+- Unable to Convert Fortify 19.2.0 FVDL file to HDF [\#25](https://github.com/mitre/heimdall_tools/issues/25)
+
+## [v1.3.19](https://github.com/mitre/heimdall_tools/tree/v1.3.19) (2020-03-30)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.18...v1.3.19)
+
+**Merged pull requests:**
+
+- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
+
 ## [v1.3.18](https://github.com/mitre/heimdall_tools/tree/v1.3.18) (2020-03-28)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.17...v1.3.18)
