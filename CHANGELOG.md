@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+## [v1.3.23.pre5](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre5) (2020-03-31)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre4...HEAD)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre4...v1.3.23.pre5)
 
 **Merged pull requests:**
 
@@ -51,6 +51,10 @@
 ## [v1.3.19](https://github.com/mitre/heimdall_tools/tree/v1.3.19) (2020-03-30)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.18...v1.3.19)
+
+**Merged pull requests:**
+
+- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
 
 ## [v1.3.18](https://github.com/mitre/heimdall_tools/tree/v1.3.18) (2020-03-28)
 
@@ -162,7 +166,6 @@
 
 **Merged pull requests:**
 
-- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
 - Updating required nori gem version [\#16](https://github.com/mitre/heimdall_tools/pull/16) ([rx294](https://github.com/rx294))
 - Populate shasum and runtime field  [\#14](https://github.com/mitre/heimdall_tools/pull/14) ([rx294](https://github.com/rx294))
 - Updates as per feedback [\#13](https://github.com/mitre/heimdall_tools/pull/13) ([rx294](https://github.com/rx294))
