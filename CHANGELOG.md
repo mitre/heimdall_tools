@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.22...HEAD)
+
+**Merged pull requests:**
+
+- Restructure workflow for publishing gem [\#37](https://github.com/mitre/heimdall_tools/pull/37) ([rbclark](https://github.com/rbclark))
+
 ## [v1.3.22](https://github.com/mitre/heimdall_tools/tree/v1.3.22) (2020-03-31)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.21...v1.3.22)
