@@ -20,13 +20,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: git fetch origin +refs/tags/*:refs/tags/*
       - name: Test on Ruby ${{ matrix.ruby }}
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Build gem and run it
         run: |
+          # Install gems required for building
+          gem install bundler git-lite-version-bump
           gem build heimdall_tools.gemspec
-          gem install heimdall_tools-*.gem
+          gem install heimdall_tools*.gem
           heimdall_tools help
           heimdall_tools version
