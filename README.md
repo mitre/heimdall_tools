@@ -2,7 +2,7 @@
 
 ![Overall Status](https://github.com/mitre/heimdall_tools/workflows/heimdall_tools/badge.svg)
 
-![Heimdall Tools Build](https://github.com/mitre/heimdall_tools/workflows/Build%20and%20run%20heimdall_tools/badge.svg)
+![Heimdall Tools Build](https://github.com/mitre/heimdall_tools/workflows/Build%20and%20release%20gem/badge.svg)
 
 HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The current converters are:
 
@@ -150,6 +150,16 @@ USAGE: heimdall_tools version
 16. (opt) test via the installed gem
 17. git commit -a -s `<your_branch>`
 18. Open a PRs aginst the MITRE inspec_tools repo
+
+# Publishing a Release
+
+If you are a maintainer, it is very easy to cut a release of this gem:
+
+1. Click on "Releases" and there should be a draft pending.
+2. Make sure the Tag version and Release title match!
+3. Add any additional notes can be added in the Description box.
+4. Click "Publish release".
+5. Release notes will be posted and a new gem will be pushed to Rubygems & Github Packages with the version you specified on step 2.
 
 # Testing
 
