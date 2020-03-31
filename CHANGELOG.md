@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.23.pre3](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre3) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre2...v1.3.23.pre3)
+
 ## [v1.3.23.pre2](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre2) (2020-03-31)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre...v1.3.23.pre2)
