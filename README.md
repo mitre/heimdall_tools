@@ -1,34 +1,52 @@
 # Heimdall Tools
 
-![Overall Status](https://github.com/mitre/heimdall_tools/workflows/heimdall_tools/badge.svg)  
+![Overall Status](https://github.com/mitre/heimdall_tools/workflows/heimdall_tools/badge.svg)
 
 ![Heimdall Tools Build](https://github.com/mitre/heimdall_tools/workflows/Build%20and%20run%20heimdall_tools/badge.svg)
 
-HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The converters in version 1.1.1 are from:
+HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The current converters are:
 
-* __sonarqube_mapper__ - open-source static code analysis tool
-* __fortify_mapper__ - commercial static code analysis tool
-* __zap_mapper__ - OWASP ZAP - open-source dynamic code analysis tool
+- **sonarqube_mapper** - open-source static code analysis tool
+- **fortify_mapper** - commercial static code analysis tool
+- **zap_mapper** - OWASP ZAP - open-source dynamic code analysis tool
 
-# Installation
+# Prerequisites
 
-Add this line to your application's Gemfile:
+Ruby 2.4 or higher (check using "ruby -v")
 
-```
-gem 'heimdall_tools', :git => "https://github.com/mitre/heimdall_tools"
-```
+If installation of Ruby is required, perform these steps:
 
-And then execute:
+## Linux Installation of Ruby
 
-```
-    $ bundle
-```
+### Installation on RHEL-based systems
 
-Clone the repo and install it yourself as:
+To install Ruby using RVM (Ruby Version Manager):
 
-```
-    $ gem install heimdall_tools
-```
+`sudo yum install curl gpg gcc gcc-c++ make patch autoconf automake bison libffi-devel libtool patch readline-devel sqlite-devel zlib-devel openssl-devel`
+
+`sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
+
+`curl -sSL https://get.rvm.io | bash -s stable`
+
+`source ~/.rvm/scripts/rvm`
+
+Finally, install the latest version of Ruby (stable), currently 2.6.x:
+
+`rvm install 2.6`
+`rvm use 2.6 --default`
+
+Verify the installed version number:
+
+`ruby -v`
+`ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-linux]`
+
+### Installation on Ubuntu-based systems
+
+<https://github.com/rvm/ubuntu_rvm>
+
+# Installation of Heimdall Tools:
+
+`gem install heimdall_tools`
 
 ## Command line Usage
 
@@ -49,7 +67,7 @@ FLAGS:
     -o --output <scan-results>       : path to output scan-results json.
     -V --verbose                     : verbose run [optional].
 
-example: 
+example:
 
 heimdall_tools sonarqube_mapper -n sonar_project_key -u http://sonar:9000/api -o scan_results.json
 
@@ -87,7 +105,7 @@ FLAGS:
 example: heimdall_tools zap_mapper -j zap_results.json -n site_name -o scan_results.json
 ```
 
-## version  
+## version
 
 Prints out the gem version
 
@@ -97,9 +115,9 @@ USAGE: heimdall_tools version
 
 # Development
 
-## Submitting a PR  
+## Submitting a PR
 
-### A complete PR should include 7 core elements:  
+### A complete PR should include 7 core elements:
 
 - A signed PR ( aka `git commit -a -s` )
 - Code for the new functionality
@@ -110,7 +128,7 @@ USAGE: heimdall_tools version
   - Scripts / Scaffolding code for the Example / Template files ( `generate_map` is an example )
 - Example Output of the new functionality if it produces an artifact
 
-### Overview of our PR process 
+### Overview of our PR process
 
 1. open an issue on the main inspec_tools website noting the issues your PR will address
 2. fork the repo
@@ -139,7 +157,6 @@ There are a set of unit tests. Run `rake test` to run the tests.
 
 To release a new version, update the version number in `version.rb` according to the [Semantic Versioning Policy](https://semver.org/). Then, run `bundle exec rake release` which will create a git tag for the specified version, push git commits and tags, and push the `.gem` file to [github.com](https://github.com/mitre/heimdall_tools).
 
-
 # License and Author
 
 ### Authors
@@ -147,19 +164,20 @@ To release a new version, update the version number in `version.rb` according to
 - Author:: Rony Xavier [rx294](https://github.com/rx294)
 - Author:: Dan Mirsky [mirskiy](https://github.com/mirskiy)
 
-### NOTICE   
+### NOTICE
 
-© 2018 The MITRE Corporation.  
+© 2018 The MITRE Corporation.
 
-Approved for Public Release; Distribution Unlimited. Case Number 18-3678.  
+Approved for Public Release; Distribution Unlimited. Case Number 18-3678.
 
 ### NOTICE
+
 MITRE hereby grants express written permission to use, reproduce, distribute, modify, and otherwise leverage this software to the extent permitted by the licensed terms provided in the LICENSE.md file included with this project.
 
-### NOTICE  
+### NOTICE
 
-This software was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General.  
+This software was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General.
 
-No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation.   
+No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation.
 
-For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000.  
+For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA 22102-7539, (703) 983-6000.
