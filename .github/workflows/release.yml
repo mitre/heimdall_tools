@@ -30,7 +30,7 @@ jobs:
         run: gem build *.gemspec
       - name: Publish to RubyGems
         run: |
-          gem push --KEY rubygems_api_key --host https://rubygems.org *.gem
+          gem push --KEY rubygems --host https://rubygems.org *.gem
       - name: Publish to GPR
         run: |
           gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
