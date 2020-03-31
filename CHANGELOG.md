@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+## [v1.3.23.pre](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre) (2020-03-31)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.22...HEAD)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.22...v1.3.23.pre)
 
 **Merged pull requests:**
 
