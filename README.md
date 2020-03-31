@@ -33,11 +33,13 @@ To install Ruby using RVM (Ruby Version Manager):
 Finally, install the latest version of Ruby (stable), currently 2.6.x:
 
 `rvm install 2.6`
+
 `rvm use 2.6 --default`
 
 Verify the installed version number:
 
 `ruby -v`
+
 `ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-linux]`
 
 ### Installation on Ubuntu-based systems
