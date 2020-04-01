@@ -56,6 +56,10 @@
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.18...v1.3.19)
 
+**Merged pull requests:**
+
+- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
+
 ## [v1.3.18](https://github.com/mitre/heimdall_tools/tree/v1.3.18) (2020-03-28)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.17...v1.3.18)
@@ -118,7 +122,6 @@
 
 **Merged pull requests:**
 
-- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
 - Fixes \#21 \[BUG\] | sonarqube\_mapper is not handling NIST mapping correctly [\#22](https://github.com/mitre/heimdall_tools/pull/22) ([rx294](https://github.com/rx294))
 
 ## [v1.3.7](https://github.com/mitre/heimdall_tools/tree/v1.3.7) (2020-03-06)
