@@ -8,4 +8,5 @@ module HeimdallTools
   autoload :FortifyMapper, 'heimdall_tools/fortify_mapper'
   autoload :ZapMapper, 'heimdall_tools/zap_mapper'
   autoload :SonarQubeMapper, 'heimdall_tools/sonarqube_mapper'
+  autoload :BurpSuiteMapper, 'heimdall_tools/burpsuite_mapper'
 end

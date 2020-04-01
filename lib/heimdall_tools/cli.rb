@@ -35,6 +35,16 @@ module HeimdallTools
       File.write(options[:output], hdf)
     end
 
+    desc 'burpsuite_mapper', 'burpsuite_mapper translates Burpsuite xml report to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:burpsuite_mapper)
+    option :xml, required: true, aliases: '-x'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def burpsuite_mapper
+      hdf = HeimdallTools::BurpSuiteMapper.new(File.read(options[:xml])).to_hdf
+      File.write(options[:output], hdf)
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION
