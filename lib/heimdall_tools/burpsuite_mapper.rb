@@ -38,7 +38,6 @@ module HeimdallTools
       rescue StandardError => e
         raise "Invalid Fortify FVDL file provided Exception: #{e}"
       end
-
     end
 
     def parse_html(block)
@@ -90,7 +89,7 @@ module HeimdallTools
     end
 
     def desc_tags(data, label)
-      { "data": data, "label": label }
+      { "data": data || NA_STRING, "label": label || NA_STRING}
     end
 
     def fix_duplicates(controls)
