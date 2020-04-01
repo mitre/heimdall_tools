@@ -1,7 +1,6 @@
 # Heimdall Tools
 
 ![Overall Status](https://github.com/mitre/heimdall_tools/workflows/heimdall_tools/badge.svg)
-
 ![Heimdall Tools Build](https://github.com/mitre/heimdall_tools/workflows/Build%20and%20release%20gem/badge.svg)
 
 HeimdallTools supplies several methods to convert output from various tools to "Heimdall Data Format"(HDF) format to be viewable in Heimdall. The current converters are:
