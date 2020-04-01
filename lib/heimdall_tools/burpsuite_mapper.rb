@@ -38,6 +38,27 @@ module HeimdallTools
       rescue StandardError => e
         raise "Invalid Fortify FVDL file provided Exception: #{e}"
       end
+
+      # begin
+      #   data = JSON.parse(zap_json, symbolize_names: true)
+      #   data = xml_to_hash(fvdl)
+      #   unless data[:site].map { |x| x[:@name] }.include?(name)
+      #     abort("Specified site name: #{name} is not defined in the JSON provided.")
+      #   end
+
+      #   site = data[:site].select { |x| x[:@name].eql?(name) }.first
+
+      #   @cwe_nist_mapping = parse_mapper
+      #   @zap_verison      = data[:@version]
+      #   @timestamp        = data[:@generated]
+      #   @name             = site[:@name]
+      #   @host             = site[:@host]
+      #   @port             = site[:@port]
+      #   @ssl              = site[:@ssl]
+      #   @alerts           = site[:alerts]
+      # rescue StandardError => e
+      #   raise "Invalid ZAP results JSON file provided Exception: #{e}"
+      # end
     end
 
     def parse_html(block)
