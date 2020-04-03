@@ -1,10 +1,7 @@
 require 'json'
-require 'nokogiri'
 require 'csv'
 require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
-
-
 
 CWE_NIST_MAPPING_FILE = './lib/data/cwe-nist-mapping.csv'.freeze
 
@@ -12,7 +9,7 @@ IMPACT_MAPPING = {
   High: 0.7,
   Medium: 0.5,
   Low: 0.3,
-  Information: 0.0
+  Information: 0.3
 }.freeze
 
 CWE_REGEX = 'CWE-(\d*):'.freeze
@@ -36,29 +33,9 @@ module HeimdallTools
         @timestamp = data['issues']['exportTime']
 
       rescue StandardError => e
-        raise "Invalid Fortify FVDL file provided Exception: #{e}"
+        raise "Invalid Burpsuite XML file provided Exception: #{e}"
       end
 
-      # begin
-      #   data = JSON.parse(zap_json, symbolize_names: true)
-      #   data = xml_to_hash(fvdl)
-      #   unless data[:site].map { |x| x[:@name] }.include?(name)
-      #     abort("Specified site name: #{name} is not defined in the JSON provided.")
-      #   end
-
-      #   site = data[:site].select { |x| x[:@name].eql?(name) }.first
-
-      #   @cwe_nist_mapping = parse_mapper
-      #   @zap_verison      = data[:@version]
-      #   @timestamp        = data[:@generated]
-      #   @name             = site[:@name]
-      #   @host             = site[:@host]
-      #   @port             = site[:@port]
-      #   @ssl              = site[:@ssl]
-      #   @alerts           = site[:alerts]
-      # rescue StandardError => e
-      #   raise "Invalid ZAP results JSON file provided Exception: #{e}"
-      # end
     end
 
     def parse_html(block)
@@ -70,7 +47,7 @@ module HeimdallTools
       finding['status'] = 'failed'
       finding['code_desc'] = format_code_desc(issue)
       finding['run_time'] = NA_FLOAT
-      finding['start_time'] = "Thu,26 Sep 2019 10:56:37"
+      finding['start_time'] = @timestamp
       [finding]
     end
 
@@ -78,7 +55,8 @@ module HeimdallTools
       desc = ''
       desc += "Host: ip: #{issue['host']['ip']}, url: #{issue['host']['text']}\n"
       desc += "Location: #{parse_html(issue['location'])}\n"
-      desc += "issueDetail: #{parse_html(issue['issueDetail'])}\n"
+      desc += "issueDetail: #{parse_html(issue['issueDetail'])}\n" unless issue['issueDetail'].nil?
+      desc += "confidence: #{issue['confidence']}\n" unless issue['confidence'].nil?
       desc
     end
 
@@ -97,10 +75,6 @@ module HeimdallTools
       IMPACT_MAPPING[severity.to_sym]
     end
 
-    def checktext(alert)
-      [alert[:solution], alert[:otherinfo], alert[:otherinfo]].join("\n")
-    end
-
     def parse_mapper
       csv_data = CSV.read(CWE_NIST_MAPPING_FILE, { encoding: 'UTF-8',
                                                    headers: true,
@@ -110,19 +84,22 @@ module HeimdallTools
     end
 
     def desc_tags(data, label)
-      { "data": data || NA_STRING, "label": label || NA_STRING}
+      { "data": data || NA_STRING, "label": label || NA_STRING }
     end
 
-    def fix_duplicates(controls)
-      control_ids = controls.map { |x| x['id'] }
-      dup_ids = control_ids.select { |x| control_ids.count(x) > 1 }.uniq
-      dup_ids.each do |dup_id|
-        index = 1
-        controls.select { |x| x['id'].eql?(dup_id) }.each do |control|
-          control['id'] = control['id'] + '.' + index.to_s
-          index += 1
-        end
+    # Burpsuite report could have multiple issue entries for multiple findings of same issue type.
+    # The meta data is identical across entries 
+    # method collapse_duplicates return unique controls with applicable findings collapsed into it.
+    def collapse_duplicates(controls)
+      unique_controls = []
+
+      controls.map { |x| x['id'] }.uniq.each do |id|
+        collapsed_results = controls.select { |x| x['id'].eql?(id) }.map {|x| x['results']}
+        unique_control = controls.find { |x| x['id'].eql?(id) }
+        unique_control['results'] = collapsed_results.flatten
+        unique_controls << unique_control
       end
+      unique_controls
     end
 
     def to_hdf
@@ -147,7 +124,7 @@ module HeimdallTools
 
         controls << @item
       end
-      fix_duplicates(controls)
+      controls = collapse_duplicates(controls)
       results = HeimdallDataFormat.new(profile_name: 'BurpSuite Pro Scan',
                                        version: @burpVersion,
                                        title: "BurpSuite Pro Scan",
