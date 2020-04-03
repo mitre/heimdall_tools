@@ -1,5 +1,65 @@
 # Changelog
 
+## [v1.3.23](https://github.com/mitre/heimdall_tools/tree/v1.3.23) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre5...v1.3.23)
+
+## [v1.3.23.pre5](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre5) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre4...v1.3.23.pre5)
+
+**Merged pull requests:**
+
+- Rubygems automatically trims the word \_api\_key when referencing the key [\#39](https://github.com/mitre/heimdall_tools/pull/39) ([rbclark](https://github.com/rbclark))
+
+## [v1.3.23.pre4](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre4) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre3...v1.3.23.pre4)
+
+**Merged pull requests:**
+
+- Cleanup GPR and Rubygems release flow [\#38](https://github.com/mitre/heimdall_tools/pull/38) ([rbclark](https://github.com/rbclark))
+
+## [v1.3.23.pre3](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre3) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre2...v1.3.23.pre3)
+
+## [v1.3.23.pre2](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre2) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre...v1.3.23.pre2)
+
+## [v1.3.23.pre](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.22...v1.3.23.pre)
+
+**Merged pull requests:**
+
+- Restructure workflow for publishing gem [\#37](https://github.com/mitre/heimdall_tools/pull/37) ([rbclark](https://github.com/rbclark))
+
+## [v1.3.22](https://github.com/mitre/heimdall_tools/tree/v1.3.22) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.21...v1.3.22)
+
+## [v1.3.21](https://github.com/mitre/heimdall_tools/tree/v1.3.21) (2020-03-31)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.20...v1.3.21)
+
+## [v1.3.20](https://github.com/mitre/heimdall_tools/tree/v1.3.20) (2020-03-30)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.19...v1.3.20)
+
+**Fixed bugs:**
+
+- Unable to Convert Fortify 19.2.0 FVDL file to HDF [\#25](https://github.com/mitre/heimdall_tools/issues/25)
+
+## [v1.3.19](https://github.com/mitre/heimdall_tools/tree/v1.3.19) (2020-03-30)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.18...v1.3.19)
+
+**Merged pull requests:**
+
+- Remove all gems from Gemfile and declare them properly in the gemspec [\#33](https://github.com/mitre/heimdall_tools/pull/33) ([rbclark](https://github.com/rbclark))
+
 ## [v1.3.18](https://github.com/mitre/heimdall_tools/tree/v1.3.18) (2020-03-28)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.17...v1.3.18)
