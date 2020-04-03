@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23...HEAD)
+
+**Implemented enhancements:**
+
+- Converter: Burp Suite Pro [\#28](https://github.com/mitre/heimdall_tools/issues/28)
+
+**Merged pull requests:**
+
+- Burpsuite mapper [\#40](https://github.com/mitre/heimdall_tools/pull/40) ([rx294](https://github.com/rx294))
+
 ## [v1.3.23](https://github.com/mitre/heimdall_tools/tree/v1.3.23) (2020-03-31)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre5...v1.3.23)
