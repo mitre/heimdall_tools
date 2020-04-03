@@ -9,6 +9,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 * __sonarqube_mapper__ - open-source static code analysis tool
 * __fortify_mapper__ - commercial static code analysis tool
 * __zap_mapper__ - OWASP ZAP - open-source dynamic code analysis tool
+* __burpsuite_mapper__ - commercial dynamic analysis tool
 
 # Installation
 
@@ -85,6 +86,21 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools zap_mapper -j zap_results.json -n site_name -o scan_results.json
+```
+
+## burpsuite_mapper
+
+burpsuite_mapper translates an BurpSuite Pro exported XML results file into HDF format json to be viewable in Heimdall
+
+```
+USAGE: heimdall_tools burpsuite_mapper [OPTIONS] -x <burpsuite-xml> -o <scan-results.json>
+
+FLAGS:
+    -x --json <zap-json>             : path to BurpSuitePro exported XML results file.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools burpsuite_mapper -x burpsuite_results.xml -o scan_results.json
 ```
 
 ## version  
