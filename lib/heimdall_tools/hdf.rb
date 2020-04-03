@@ -2,6 +2,7 @@ require 'json'
 require 'heimdall_tools/version'
 require 'openssl'
 
+NA_STRING = "".freeze
 NA_TAG = nil.freeze
 NA_ARRAY = [].freeze
 NA_HASH = {}.freeze
