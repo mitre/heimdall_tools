@@ -8,8 +8,13 @@
 
 - Converter: Burp Suite Pro [\#28](https://github.com/mitre/heimdall_tools/issues/28)
 
+**Fixed bugs:**
+
+- \[Bug\] Import mapping csvs by relative path  [\#41](https://github.com/mitre/heimdall_tools/issues/41)
+
 **Merged pull requests:**
 
+- Update to pull data csvs by relative path [\#42](https://github.com/mitre/heimdall_tools/pull/42) ([rx294](https://github.com/rx294))
 - Burpsuite mapper [\#40](https://github.com/mitre/heimdall_tools/pull/40) ([rx294](https://github.com/rx294))
 
 ## [v1.3.23](https://github.com/mitre/heimdall_tools/tree/v1.3.23) (2020-03-31)
