@@ -3,7 +3,9 @@ require 'csv'
 require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
 
-CWE_NIST_MAPPING_FILE = './lib/data/cwe-nist-mapping.csv'.freeze
+RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
+
+CWE_NIST_MAPPING_FILE = File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv')
 
 IMPACT_MAPPING = {
   High: 0.7,
