@@ -3,9 +3,11 @@ require 'json'
 require 'csv'
 require 'heimdall_tools/hdf'
 
+RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
+
 MAPPING_FILES = {
-  cwe: './lib/data/cwe-nist-mapping.csv'.freeze,
-  owasp: './lib/data/owasp-nist-mapping.csv'.freeze
+  cwe: File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv'),
+  owasp: File.join(RESOURCE_DIR, 'owasp-nist-mapping.csv')
 }.freeze
 
 IMPACT_MAPPING = {

@@ -4,7 +4,9 @@ require 'csv'
 require 'heimdall_tools/hdf'
 
 
-CWE_NIST_MAPPING_FILE = './lib/data/cwe-nist-mapping.csv'.freeze
+RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
+
+CWE_NIST_MAPPING_FILE = File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv')
 
 # rubocop:disable Metrics/AbcSize
 
