@@ -43,7 +43,11 @@ module HeimdallTools
         traces.each do |trace|
           entries = trace['Primary']['Entry']
           entries = [entries] unless entries.is_a?(Array)
-          entries = entries.reject { |x| x['Node'].nil? }
+          # This is just regular array access, it is just written in a manner that allows us
+          # to use Ruby's safe navigation operator. We rely on
+          # entry['Node']['SourceLocation']['snippet'] to exist on all of our entries, so if any
+          # of those are empty we reject that element.
+          entries = entries.reject { |x| x&.[]('Node')&.[]('SourceLocation')&.[]('snippet').nil? }
           entries.each do |entry|
             findings << process_entry(entry)
           end
