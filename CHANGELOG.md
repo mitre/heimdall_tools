@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.24...HEAD)
+
+**Merged pull requests:**
+
+- Update actions to use ruby/setup-ruby [\#43](https://github.com/mitre/heimdall_tools/pull/43) ([Bialogs](https://github.com/Bialogs))
+
 ## [v1.3.24](https://github.com/mitre/heimdall_tools/tree/v1.3.24) (2020-04-07)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23...v1.3.24)
@@ -85,10 +93,6 @@
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.16...v1.3.17)
 
-**Closed issues:**
-
-- Request New converters [\#23](https://github.com/mitre/heimdall_tools/issues/23)
-
 ## [v1.3.16](https://github.com/mitre/heimdall_tools/tree/v1.3.16) (2020-03-25)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.15...v1.3.16)
@@ -124,6 +128,7 @@
 **Closed issues:**
 
 - Update XML parser [\#26](https://github.com/mitre/heimdall_tools/issues/26)
+- Request New converters [\#23](https://github.com/mitre/heimdall_tools/issues/23)
 
 **Merged pull requests:**
 
