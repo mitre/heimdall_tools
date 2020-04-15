@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - run: git fetch origin +refs/tags/*:refs/tags/*
       - name: Test on Ruby ${{ matrix.ruby }}
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Build gem and run it
