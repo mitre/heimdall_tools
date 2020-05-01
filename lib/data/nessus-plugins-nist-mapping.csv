@@ -1,0 +1,56 @@
+pluginFamily,pluginID,NIST-ID,Rev
+AIX Local Security Checks,*,SA-11|RA-5,4
+Amazon Linux Local Security Checks,*,SA-11|RA-5,4
+CentOS Local Security Checks,*,SA-11|RA-5,4
+Debian Local Security Checks,*,SA-11|RA-5,4
+F5 Networks Local Security Checks,*,SA-11|RA-5,4
+Fedora Local Security Checks,*,SA-11|RA-5,4
+FreeBSD Local Security Checks,*,SA-11|RA-5,4
+Gentoo Local Security Checks,*,SA-11|RA-5,4
+HP-UX Local Security Checks,*,SA-11|RA-5,4
+Huawei Local Security Checks,*,SA-11|RA-5,4
+Junos Local Security Checks,*,SA-11|RA-5,4
+MacOS X Local Security Checks,*,SA-11|RA-5,4
+Mandriva Local Security Checks,*,SA-11|RA-5,4
+NewStart CGSL Local Security Checks,*,SA-11|RA-5,4
+Oracle Linux Local Security Checks,*,SA-11|RA-5,4
+OracleVM Local Security Checks,*,SA-11|RA-5,4
+Palo Alto Local Security Checks,*,SA-11|RA-5,4
+PhotonOS Local Security Checks,*,SA-11|RA-5,4
+Red Hat Local Security Checks,*,SA-11|RA-5,4
+Scientific Linux Local Security Checks,*,SA-11|RA-5,4
+Slackware Local Security Checks,*,SA-11|RA-5,4
+Solaris Local Security Checks,*,SA-11|RA-5,4
+SuSE Local Security Checks,*,SA-11|RA-5,4
+Ubuntu Local Security Checks,*,SA-11|RA-5,4
+VMware ESX Local Security Checks,*,SA-11|RA-5,4
+Virtuozzo Local Security Checks,*,SA-11|RA-5,4
+Backdoors,,,
+Brute force attacks,,,
+CGI abuses,,,
+CGI abuses : XSS,,,
+CISCO,,,
+DNS,,,
+Databases,,,
+Default Unix Accounts,,,
+Denial of Service,,,
+FTP,,,
+Firewalls,,,
+Gain a shell remotely,,,
+General,,,
+Misc.,,,
+Mobile Devices,,,
+Netware,,,
+Peer-To-Peer File Sharing,,,
+Policy Compliance,,,
+Port scanners,,,
+RPC,,,
+SCADA,,,
+SMTP problems,,,
+SNMP,,,
+Service detection,,,
+Settings,,,
+Web Servers,,,
+Windows,,,
+Windows : Microsoft Bulletins,,,
+Windows : User management,,,
