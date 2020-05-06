@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.25...HEAD)
+
+**Implemented enhancements:**
+
+- Converter: Nessus Transform for Audit results and vulnerability scan results  [\#29](https://github.com/mitre/heimdall_tools/issues/29)
+
+**Merged pull requests:**
+
+- Nessus Mapper  [\#45](https://github.com/mitre/heimdall_tools/pull/45) ([rx294](https://github.com/rx294))
+
 ## [v1.3.25](https://github.com/mitre/heimdall_tools/tree/v1.3.25) (2020-04-16)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.24...v1.3.25)
