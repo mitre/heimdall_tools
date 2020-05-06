@@ -45,6 +45,21 @@ module HeimdallTools
       File.write(options[:output], hdf)
     end
 
+    desc 'nessus_mapper', 'nessus_mapper translates nessus xml report to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:nessus_mapper)
+    option :xml, required: true, aliases: '-x'
+    option :output_prefix, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def nessus_mapper
+      hdfs = HeimdallTools::NessusMapper.new(File.read(options[:xml])).to_hdf
+
+      hdfs.keys.each do | host |
+        File.write("#{options[:output_prefix]}-#{host}.json", hdfs[host])
+        puts "HDF Generated: #{options[:output_prefix]}-#{host}.json"
+      end
+      
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION
