@@ -9,4 +9,5 @@ module HeimdallTools
   autoload :ZapMapper, 'heimdall_tools/zap_mapper'
   autoload :SonarQubeMapper, 'heimdall_tools/sonarqube_mapper'
   autoload :BurpSuiteMapper, 'heimdall_tools/burpsuite_mapper'
+  autoload :NessusMapper, 'heimdall_tools/nessus_mapper'
 end
