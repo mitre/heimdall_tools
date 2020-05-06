@@ -28,12 +28,14 @@ module HeimdallTools
                    depends: NA_ARRAY,
                    groups: NA_ARRAY,
                    status: 'loaded',
-                   controls: NA_TAG)
+                   controls: NA_TAG,
+                   target_id: NA_TAG)
 
       @results_json = {}
       @results_json['platform'] = {}
       @results_json['platform']['name'] = 'Heimdall Tools'
       @results_json['platform']['release'] = HeimdallTools::VERSION
+      @results_json['platform']['target_id'] = target_id.to_s
       @results_json['version'] = HeimdallTools::VERSION
 
       @results_json['statistics'] = {}
