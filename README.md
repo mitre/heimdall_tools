@@ -122,17 +122,15 @@ example: heimdall_tools burpsuite_mapper -x burpsuite_results.xml -o scan_result
 
 ## nessus_mapper
 
-nessus_mapper translates an Nessus exported XML results file into HDF format json to be viewable in Heimdall
+nessus_mapper translates a Nessus-exported XML results file into HDF format json to be viewable in Heimdall
 
-The current iteration maps all plugin families except 'Policy Compliance'
-
-A separate HDF JSON is generated for each host reported in the Nessus Report.
+Note: A separate HDF JSON file is generated for each host reported in the Nessus Report.
 
 ```
 USAGE: heimdall_tools nessus_mapper [OPTIONS] -x <nessus-results-xml> -o <hdf-file-prefix>
 
 FLAGS:
-    -x <nessus-results-xml>          : path to BurpSuitePro exported XML results file.
+    -x <nessus-results-xml>          : path to Nessus-exported XML results file.
     -o --output_prefix <prefix>      : path to output scan-results json.
     -V --verbose                     : verbose run [optional].
 
