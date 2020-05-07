@@ -33,7 +33,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_runtime_dependency 'httparty', '~> 0.18.0'
   spec.add_runtime_dependency 'openssl', '~> 2.1'
   spec.add_runtime_dependency 'nori', '~> 2.6'
-  spec.add_runtime_dependency 'git-lite-version-bump', '>= 0.17'
+  spec.add_runtime_dependency 'git-lite-version-bump', '>= 0.17.2'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'pry'
