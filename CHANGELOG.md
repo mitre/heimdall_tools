@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.26...HEAD)
+
+**Merged pull requests:**
+
+- Require a newer version of git-lite-version-bump for Windows support [\#46](https://github.com/mitre/heimdall_tools/pull/46) ([rbclark](https://github.com/rbclark))
+
 ## [v1.3.26](https://github.com/mitre/heimdall_tools/tree/v1.3.26) (2020-05-06)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.25...v1.3.26)
