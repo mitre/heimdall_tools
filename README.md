@@ -53,6 +53,13 @@ Verify the installed version number:
 On the Command Line, `heimdall_tools help` will print a listing of all the command with a short description.
 For detailed help on any command, run `heimdall_tools help [COMMAND]`. Help can also be called with the `-h, --help` flags after any command, like `heimdall_tools fortify_mapper -h`.
 
+For Docker usage, replace the `heimdall_tools` command with the correct Docker command below for your operating system:
+
+- **On Linux and Mac:** `docker run -it -v$(pwd):/share mitre/heimdall_tools`
+- **On Windows CMD:** `docker run -it -v%cd%:/share mitre/heimdall_tools`
+
+Note that all of the above Docker commands will mount your current directory on the Docker container. Ensure that you have navigated to the directory you intend to convert files in before executing the command.
+
 ## sonarqube_mapper
 
 sonarqube_mapper pulls SonarQube results, for the specified project, from the API and outputs in HDF format Json to be viewed on Heimdall
