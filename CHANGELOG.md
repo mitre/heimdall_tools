@@ -2,10 +2,23 @@
 
 ## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.26...HEAD)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.27...HEAD)
+
+**Closed issues:**
+
+- Map 'Policy Compliance' entries for nessus\_mapper [\#49](https://github.com/mitre/heimdall_tools/issues/49)
 
 **Merged pull requests:**
 
+- Add code to translate Policy compliance results [\#51](https://github.com/mitre/heimdall_tools/pull/51) ([rx294](https://github.com/rx294))
+
+## [v1.3.27](https://github.com/mitre/heimdall_tools/tree/v1.3.27) (2020-05-22)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.26...v1.3.27)
+
+**Merged pull requests:**
+
+- Updated the Dockerfile to run in an alpine ruby container [\#47](https://github.com/mitre/heimdall_tools/pull/47) ([jsa5593](https://github.com/jsa5593))
 - Require a newer version of git-lite-version-bump for Windows support [\#46](https://github.com/mitre/heimdall_tools/pull/46) ([rbclark](https://github.com/rbclark))
 
 ## [v1.3.26](https://github.com/mitre/heimdall_tools/tree/v1.3.26) (2020-05-06)
