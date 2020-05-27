@@ -17,6 +17,10 @@ IMPACT_MAPPING = {
 
 DEFAULT_NIST_TAG = ["unmapped"].freeze
 
+# Nessus results file 800-53 refs does not contain Nist rev version. Using this default
+# version in that case
+DEFAULT_NIST_REV = 'Rev_4'.freeze
+
 NA_PLUGIN_OUTPUT = "This Nessus Plugin does not provide output message.".freeze
 
 # rubocop:disable Metrics/AbcSize
@@ -30,6 +34,8 @@ module HeimdallTools
       begin
         @cwe_nist_mapping = parse_mapper
         @data = xml_to_hash(nessus_xml)
+
+        File.write("273970.json", @data.to_json)
 
         @reports = extract_report
         @scaninfo = extract_scaninfo
@@ -49,6 +55,9 @@ module HeimdallTools
       rescue StandardError => e
         raise "Invalid Nessus XML file provided Exception: #{e}"
       end
+    end
+    def parse_refs(refs, key)
+      refs.split(',').map { |x| x.split('|')[1] if x.include?(key) }.compact
     end
 
     def extract_scaninfo
@@ -82,8 +91,20 @@ module HeimdallTools
 
     def finding(issue, timestamp)
       finding = {}
-      finding['status'] = 'failed'
-      finding['code_desc'] = issue['plugin_output'] || NA_PLUGIN_OUTPUT
+      # if compliance-result field, this is a policy compliance result entry
+      # nessus policy compliance result provides a pass/fail data
+      # For non policy compliance  results are defaulted to failed
+      if issue['compliance-result']
+        finding['status'] = issue['compliance-result'].eql?('PASSED') ? 'passed' : 'failed'
+      else
+        finding['status'] = 'failed'
+      end
+
+      if issue['description']
+        finding['code_desc'] = issue['description'].to_s || NA_PLUGIN_OUTPUT
+      else
+        finding['code_desc'] = issue['plugin_output'] || NA_PLUGIN_OUTPUT
+      end
       finding['run_time'] = NA_FLOAT
       finding['start_time'] = timestamp
       [finding]
@@ -96,14 +117,15 @@ module HeimdallTools
     end
 
     def impact(severity)
+      # Map CAT levels and Plugin severity to HDF impact levels
       case severity
       when "0"
         IMPACT_MAPPING[:Info]
-      when "1"
+      when "1","III"
         IMPACT_MAPPING[:Low]
-      when "2"
+      when "2","II"
         IMPACT_MAPPING[:Medium]
-      when "3"
+      when "3","I"
         IMPACT_MAPPING[:High]
       when "4"
         IMPACT_MAPPING[:Critical]
@@ -142,21 +164,54 @@ module HeimdallTools
     def to_hdf
       host_results = {}
       @reports.each do | report|
-        # Under current version of the converter `Policy Compliance` items are ignored
-        report_items = report['ReportItem'].select {|x| !x['pluginFamily'].eql? 'Policy Compliance'}
-
         controls = []
-        report_items.each do | item |
+        report['ReportItem'].each do | item |
           @item = {}
-          @item['id']                 = item['pluginID'].to_s
-          @item['title']              = item['pluginName'].to_s
-          @item['desc']               = format_desc(item).to_s
-          @item['impact']             = impact(item['severity'])
           @item['tags']               = {}
           @item['descriptions']       = []
           @item['refs']               = NA_ARRAY
           @item['source_location']    = NA_HASH
-          @item['tags']['nist']       = nist_tag(item['pluginFamily'],item['pluginID'])
+
+          # Nessus results field set are different for 'Policy Compliance' plug-in family vs other plug-in families
+          # Following if conditions capture compliance* if it exists else it will default to plugin* fields
+          # Current version covers STIG based 'Policy Compliance' results
+          # TODO Cover cases for 'Policy Compliance' results based on CIS
+          if item['compliance-reference']
+            @item['id']                 = parse_refs(item['compliance-reference'],'Vuln-ID').join.to_s
+          else
+            @item['id']                 = item['pluginID'].to_s
+          end
+          if item['compliance-check-name']
+            @item['title']              = item['compliance-check-name'].to_s
+          else
+            @item['title']              = item['pluginName'].to_s
+          end
+          if item['compliance-info']
+            @item['desc']              = item['compliance-info'].to_s
+          else
+            @item['desc']              = format_desc(item).to_s
+          end
+          if item['compliance-reference']
+            @item['impact']            = impact(parse_refs(item['compliance-reference'],'CAT').join.to_s)
+          else
+            @item['impact']            = impact(item['severity']) 
+          end
+          if item['compliance-reference']
+            # TODO: Cover cases where 800-53 refs are not provided in nessus `compliance-reference` field
+            @item['tags']['nist']     = parse_refs(item['compliance-reference'],'800-53') << DEFAULT_NIST_REV
+          else
+            @item['tags']['nist']     = nist_tag(item['pluginFamily'],item['pluginID'])
+          end
+          if item['compliance-solution']
+            # TODO: Cover cases where 800-53 refs are not provided in nessus `compliance-reference` field
+            @item['tags']['nist']     = parse_refs(item['compliance-reference'],'800-53') << DEFAULT_NIST_REV
+          else
+            @item['tags']['nist']     = nist_tag(item['pluginFamily'],item['pluginID'])
+          end
+          if item['compliance-solution']
+            @item['descriptions']       <<  desc_tags(item['compliance-solution'], 'check')
+          end
+
           @item['code']               = ''
           @item['results']            = finding(item, extract_timestamp(report))
           controls << @item
