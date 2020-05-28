@@ -34,9 +34,6 @@ module HeimdallTools
       begin
         @cwe_nist_mapping = parse_mapper
         @data = xml_to_hash(nessus_xml)
-
-        File.write("273970.json", @data.to_json)
-
         @reports = extract_report
         @scaninfo = extract_scaninfo
       rescue StandardError => e
