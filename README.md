@@ -9,6 +9,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **fortify_mapper** - commercial static code analysis tool
 - **zap_mapper** - OWASP ZAP - open-source dynamic code analysis tool
 - **burpsuite_mapper** - commercial dynamic analysis tool
+- **nessus_mapper** - commercial vulnerability scanner
 
 Ruby 2.4 or higher (check using "ruby -v")
 
