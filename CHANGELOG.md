@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+## [v1.3.29](https://github.com/mitre/heimdall_tools/tree/v1.3.29) (2020-05-28)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.28...HEAD)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.28...v1.3.29)
 
 **Merged pull requests:**
 
@@ -86,10 +86,6 @@
 ## [v1.3.23.pre4](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre4) (2020-03-31)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.23.pre3...v1.3.23.pre4)
-
-**Merged pull requests:**
-
-- Cleanup GPR and Rubygems release flow [\#38](https://github.com/mitre/heimdall_tools/pull/38) ([rbclark](https://github.com/rbclark))
 
 ## [v1.3.23.pre3](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre3) (2020-03-31)
 
@@ -221,6 +217,7 @@
 
 **Merged pull requests:**
 
+- Cleanup GPR and Rubygems release flow [\#38](https://github.com/mitre/heimdall_tools/pull/38) ([rbclark](https://github.com/rbclark))
 - Sonarqube authentication option [\#20](https://github.com/mitre/heimdall_tools/pull/20) ([rx294](https://github.com/rx294))
 
 ## [v1.3.2](https://github.com/mitre/heimdall_tools/tree/v1.3.2) (2019-12-27)
