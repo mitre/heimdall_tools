@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.28...HEAD)
+
+**Merged pull requests:**
+
+- Remove debug line [\#53](https://github.com/mitre/heimdall_tools/pull/53) ([rx294](https://github.com/rx294))
+
 ## [v1.3.28](https://github.com/mitre/heimdall_tools/tree/v1.3.28) (2020-05-28)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.27...v1.3.28)
