@@ -7,6 +7,7 @@ require 'heimdall_tools/hdf'
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
 CWE_NIST_MAPPING_FILE = File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv')
+DEFAULT_NIST_TAG = ["SA-11", "RA-5", "Rev_4"].freeze
 
 # rubocop:disable Metrics/AbcSize
 
@@ -66,7 +67,7 @@ module HeimdallTools
     def nist_tag(cweid)
       entries = @cwe_nist_mapping.select { |x| x[:cweid].to_s.eql?(cweid.to_s) }
       tags = entries.map { |x| [x[:nistid], "Rev_#{x[:rev]}"] }
-      tags.empty? ? ['unmapped'] : tags.flatten.uniq
+      tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
     end
 
     def impact(riskcode)

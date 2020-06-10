@@ -3,6 +3,7 @@ require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
 
 NIST_REFERENCE_NAME = 'Standards Mapping - NIST Special Publication 800-53 Revision 4'.freeze
+DEFAULT_NIST_TAG = ["SA-11", "RA-5", "Rev_4"].freeze
 
 module HeimdallTools
   class FortifyMapper
@@ -68,7 +69,7 @@ module HeimdallTools
       references = rule['References']['Reference']
       references = [references] unless references.is_a?(Array)
       tag = references.detect { |x| x['Author'].eql?(NIST_REFERENCE_NAME) }
-      tag.nil? ? 'unmapped' : tag['Title'].match(/[a-zA-Z][a-zA-Z]-\d{1,2}/)
+      tag.nil? ? DEFAULT_NIST_TAG : tag['Title'].match(/[a-zA-Z][a-zA-Z]-\d{1,2}/)
     end
 
     def impact(classid)
