@@ -3,7 +3,6 @@ require 'csv'
 require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
 require 'nokogiri'
-require 'pp'
 
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
