@@ -2,10 +2,12 @@ require 'json'
 require 'csv'
 require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
+require 'nokogiri'
 
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
 NESSUS_PLUGINS_NIST_MAPPING_FILE =   File.join(RESOURCE_DIR, 'nessus-plugins-nist-mapping.csv')
+U_CCI_LIST =   File.join(RESOURCE_DIR, 'U_CCI_List.xml')
 
 IMPACT_MAPPING = {
   Info: 0.0,
@@ -25,12 +27,22 @@ NA_PLUGIN_OUTPUT = "This Nessus Plugin does not provide output message.".freeze
 
 # rubocop:disable Metrics/AbcSize
 
+# Loading spinner sign
+$spinner = Enumerator.new do |e|
+  loop do
+    e.yield '|'
+    e.yield '/'
+    e.yield '-'
+    e.yield '\\'
+  end
+end
+
 module HeimdallTools
   class NessusMapper
     def initialize(nessus_xml, verbose = false)
       @nessus_xml = nessus_xml
       @verbose = verbose
-
+      read_cci_xml
       begin
         @cwe_nist_mapping = parse_mapper
         @data = xml_to_hash(nessus_xml)
@@ -53,6 +65,7 @@ module HeimdallTools
         raise "Invalid Nessus XML file provided Exception: #{e}"
       end
     end
+
     def parse_refs(refs, key)
       refs.split(',').map { |x| x.split('|')[1] if x.include?(key) }.compact
     end
@@ -107,7 +120,26 @@ module HeimdallTools
       [finding]
     end
 
-    def nist_tag(pluginfamily, pluginid)
+    def read_cci_xml
+      @cci_xml = Nokogiri::XML(File.open(U_CCI_LIST))
+      @cci_xml.remove_namespaces!
+    rescue StandardError => e
+      puts "Exception: #{e.message}"
+    end
+
+    def cci_nist_tag(cci_refs)
+      nist_tags = []
+      cci_refs.each do | cci_ref |
+        item_node = @cci_xml.xpath("//cci_list/cci_items/cci_item[@id='#{cci_ref}']")[0] unless @cci_xml.nil?
+        unless item_node.nil?
+          nist_ref = item_node.xpath('./references/reference[not(@version <= preceding-sibling::reference/@version) and not(@version <=following-sibling::reference/@version)]/@index').text
+        end
+        nist_tags << nist_ref
+      end
+      nist_tags
+    end
+
+    def plugin_nist_tag(pluginfamily, pluginid)
       entries = @cwe_nist_mapping.select { |x| (x[:pluginfamily].eql?(pluginfamily) && (x[:pluginid].eql?('*') || x[:pluginid].eql?(pluginid.to_i)) ) }
       tags = entries.map { |x| [x[:nistid].split('|'), "Rev_#{x[:rev]}"] }
       tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
@@ -163,6 +195,7 @@ module HeimdallTools
       @reports.each do | report|
         controls = []
         report['ReportItem'].each do | item |
+          printf("\rProcessing: %s", $spinner.next)
           @item = {}
           @item['tags']               = {}
           @item['descriptions']       = []
@@ -194,16 +227,9 @@ module HeimdallTools
             @item['impact']            = impact(item['severity']) 
           end
           if item['compliance-reference']
-            # TODO: Cover cases where 800-53 refs are not provided in nessus `compliance-reference` field
-            @item['tags']['nist']     = parse_refs(item['compliance-reference'],'800-53') << DEFAULT_NIST_REV
+            @item['tags']['nist']     = cci_nist_tag(parse_refs(item['compliance-reference'],'CCI'))
           else
-            @item['tags']['nist']     = nist_tag(item['pluginFamily'],item['pluginID'])
-          end
-          if item['compliance-solution']
-            # TODO: Cover cases where 800-53 refs are not provided in nessus `compliance-reference` field
-            @item['tags']['nist']     = parse_refs(item['compliance-reference'],'800-53') << DEFAULT_NIST_REV
-          else
-            @item['tags']['nist']     = nist_tag(item['pluginFamily'],item['pluginID'])
+            @item['tags']['nist']     = plugin_nist_tag(item['pluginFamily'],item['pluginID'])
           end
           if item['compliance-solution']
             @item['descriptions']       <<  desc_tags(item['compliance-solution'], 'check')

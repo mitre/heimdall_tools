@@ -53,9 +53,10 @@ module HeimdallTools
     def nessus_mapper
       hdfs = HeimdallTools::NessusMapper.new(File.read(options[:xml])).to_hdf
 
+      puts "\nHDF Generated:"
       hdfs.keys.each do | host |
         File.write("#{options[:output_prefix]}-#{host}.json", hdfs[host])
-        puts "HDF Generated: #{options[:output_prefix]}-#{host}.json"
+        puts "#{options[:output_prefix]}-#{host}.json"
       end
       
     end
