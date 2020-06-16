@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
+## [v1.3.31](https://github.com/mitre/heimdall_tools/tree/v1.3.31) (2020-06-16)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.30.pre1...HEAD)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.30.pre1...v1.3.31)
 
 **Closed issues:**
 
