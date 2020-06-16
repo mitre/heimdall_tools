@@ -121,8 +121,7 @@ module HeimdallTools
     end
 
     def read_cci_xml
-      cci_list_path = File.join(File.dirname(__FILE__), '../data/U_CCI_List.xml')
-      @cci_xml = Nokogiri::XML(File.open(cci_list_path))
+      @cci_xml = Nokogiri::XML(File.open(U_CCI_LIST))
       @cci_xml.remove_namespaces!
     rescue StandardError => e
       puts "Exception: #{e.message}"
@@ -134,10 +133,8 @@ module HeimdallTools
         item_node = @cci_xml.xpath("//cci_list/cci_items/cci_item[@id='#{cci_ref}']")[0] unless @cci_xml.nil?
         unless item_node.nil?
           nist_ref = item_node.xpath('./references/reference[not(@version <= preceding-sibling::reference/@version) and not(@version <=following-sibling::reference/@version)]/@index').text
-          nist_ver = item_node.xpath('./references/reference[not(@version <= preceding-sibling::reference/@version) and not(@version <=following-sibling::reference/@version)]/@version').text
         end
         nist_tags << nist_ref
-        nist_tags << "Rev_#{nist_ver}"
       end
       nist_tags
     end
