@@ -1,8 +1,20 @@
 # Changelog
 
-## [v1.3.30](https://github.com/mitre/heimdall_tools/tree/v1.3.30) (2020-06-12)
+## [Unreleased](https://github.com/mitre/heimdall_tools/tree/HEAD)
 
-[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.29...v1.3.30)
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.30.pre1...HEAD)
+
+**Closed issues:**
+
+- nessus\_mapper CCI to NIST Mapping [\#54](https://github.com/mitre/heimdall_tools/issues/54)
+
+**Merged pull requests:**
+
+- Update to map NIST tags from CCI refs [\#55](https://github.com/mitre/heimdall_tools/pull/55) ([rx294](https://github.com/rx294))
+
+## [v1.3.30.pre1](https://github.com/mitre/heimdall_tools/tree/v1.3.30.pre1) (2020-06-12)
+
+[Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.29...v1.3.30.pre1)
 
 ## [v1.3.29](https://github.com/mitre/heimdall_tools/tree/v1.3.29) (2020-05-28)
 
@@ -94,7 +106,6 @@
 **Merged pull requests:**
 
 - Cleanup GPR and Rubygems release flow [\#38](https://github.com/mitre/heimdall_tools/pull/38) ([rbclark](https://github.com/rbclark))
-- Restructure workflow for publishing gem [\#37](https://github.com/mitre/heimdall_tools/pull/37) ([rbclark](https://github.com/rbclark))
 
 ## [v1.3.23.pre3](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre3) (2020-03-31)
 
@@ -107,6 +118,10 @@
 ## [v1.3.23.pre](https://github.com/mitre/heimdall_tools/tree/v1.3.23.pre) (2020-03-31)
 
 [Full Changelog](https://github.com/mitre/heimdall_tools/compare/v1.3.22...v1.3.23.pre)
+
+**Merged pull requests:**
+
+- Restructure workflow for publishing gem [\#37](https://github.com/mitre/heimdall_tools/pull/37) ([rbclark](https://github.com/rbclark))
 
 ## [v1.3.22](https://github.com/mitre/heimdall_tools/tree/v1.3.22) (2020-03-31)
 
