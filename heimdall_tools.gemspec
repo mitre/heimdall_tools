@@ -20,7 +20,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.homepage      = 'https://github.com/mitre/heimdall_tools'
   spec.license       = 'Apache-2.0'
 
-  spec.files         = Dir.glob('{lib,test,exe}/**/*') + %w{CHANGELOG.md Guardfile LICENSE.md Rakefile README.md}
+  spec.files         = Dir.glob('{lib,test,exe}/**/*') + %w{Guardfile LICENSE.md Rakefile README.md}
   spec.bindir        = 'exe'
   spec.executables   << 'heimdall_tools'
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
