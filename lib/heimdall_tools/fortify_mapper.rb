@@ -3,7 +3,7 @@ require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
 
 NIST_REFERENCE_NAME = 'Standards Mapping - NIST Special Publication 800-53 Revision 4'.freeze
-DEFAULT_NIST_TAG = ["SA-11", "RA-5", "Rev_4"].freeze
+DEFAULT_NIST_TAG = ["SA-11", "RA-5"].freeze
 
 module HeimdallTools
   class FortifyMapper

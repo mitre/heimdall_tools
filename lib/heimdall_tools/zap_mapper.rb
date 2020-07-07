@@ -7,7 +7,7 @@ require 'heimdall_tools/hdf'
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
 CWE_NIST_MAPPING_FILE = File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv')
-DEFAULT_NIST_TAG = ["SA-11", "RA-5", "Rev_4"].freeze
+DEFAULT_NIST_TAG = ["SA-11", "RA-5"].freeze
 
 # rubocop:disable Metrics/AbcSize
 
