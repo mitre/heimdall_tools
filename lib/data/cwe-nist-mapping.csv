@@ -79,6 +79,7 @@
 305, Authentication Bypass by Primary Weakness,IA-8,4,Identification and Authentication (Non-Organizational Users)
 306, Missing Authentication for Critical Function,AC-3,4,Access Enforcement
 307, Improper Restriction of Excessive Authentication Attempts,AC-7,4,Unsuccessful Logon Attempts
+310, Cryptographic Issues,SC-13,4,Cryptographic Protection
 311, Missing Encryption of Sensitive Data,SC-8,4,Transmission Confidentiality and Integrity
 321, Use of Hard-coded Cryptographic Key,SC-12,4,Cryptographic Key Establishment and Management
 325, Missing Required Cryptographic Step,SC-13,4,Cryptographic Protection
@@ -113,7 +114,7 @@
 401, Improper Release of Memory Before Removing Last Reference,,4,
 404, Improper Resource Shutdown or Release,,4,
 415, Double Free,,4,
-416, Use after Free,,4,
+416, Use after Free,SC-4,4,Information in Shared Resources
 434, Unrestricted Upload of File with Dangerous Type,AC-6,4,Least Privilege: Privilege Levels for Code Execution
 457, Use of Uninitialized Variable,,4,
 466, Return of Pointer Value Outside of Expected Range,,4,
