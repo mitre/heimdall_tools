@@ -46,6 +46,7 @@
 170, Improper Null Termination,SI-10,4,Information Input Validation
 176, Improper Handling of Unicode Encoding,,4,
 185, Incorrect Regular Expression,,4,
+189, Numeric Errors,SA-11,4,Developer Security Testing and Evaluation
 190, Integer Overflow or Wraparound,SI-10,4,Information Input Validation
 195, Signed to Unsigned Conversion Error,,4,
 200, Information Exposure,SC-8,4,Transmission Confidentiality and Integrity
@@ -79,6 +80,7 @@
 305, Authentication Bypass by Primary Weakness,IA-8,4,Identification and Authentication (Non-Organizational Users)
 306, Missing Authentication for Critical Function,AC-3,4,Access Enforcement
 307, Improper Restriction of Excessive Authentication Attempts,AC-7,4,Unsuccessful Logon Attempts
+310, Cryptographic Issues,SC-13,4,Cryptographic Protection
 311, Missing Encryption of Sensitive Data,SC-8,4,Transmission Confidentiality and Integrity
 321, Use of Hard-coded Cryptographic Key,SC-12,4,Cryptographic Key Establishment and Management
 325, Missing Required Cryptographic Step,SC-13,4,Cryptographic Protection
@@ -113,15 +115,16 @@
 401, Improper Release of Memory Before Removing Last Reference,,4,
 404, Improper Resource Shutdown or Release,,4,
 415, Double Free,,4,
-416, Use after Free,,4,
+416, Use after Free,SC-4,4,Information in Shared Resources
 434, Unrestricted Upload of File with Dangerous Type,AC-6,4,Least Privilege: Privilege Levels for Code Execution
+444, Inconsistent Interpretation of HTTP Requests ('HTTP Request Smuggling'),SI-10,4,Information Input Validation
 457, Use of Uninitialized Variable,,4,
 466, Return of Pointer Value Outside of Expected Range,,4,
 470, Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection'),SI-10,4,Information Input Validation
 471, Modification of Assumed-Immutable DATA (MAID),AC-3,4,Access Enforcement
 474, Use of Function with Inconsistent Implementations,,4,
 475, Undefined Behavior for Input to API,,4,
-476, NULL Pointer Dereference,,4,
+476, NULL Pointer Dereference,SI-10,4,Information Input Validation
 477, Use of Obsolete Functions,,4,
 478, Missing Default Case in Switch Statement,,4,
 492, Use of Inner Class Containing Sensitive Data,AC-3,4,Access Enforcement
@@ -130,6 +133,7 @@
 495, Private Array-Typed Field Returned From A Public Method,AC-3,4,Access Enforcement
 497, Exposure of System Data to an Unauthorized Control Sphere,SI-11,4,Error Handling
 501, Trust Boundary Violation,SI-10,4,Information Input Validation
+502, Deserialization of Untrusted Data,SI-10,4,Information Input Validation 
 521, Weak Password Requirements,IA-5,4,Authenticator Management : -1 Password-based Authentication
 522, Insufficiently Protected Credentials,SC-8,4,Transmission Confidentiality and Integrity
 539, Information Exposure Through Persistent Cookies,SC-23,4,Session Authenticity
@@ -159,7 +163,7 @@
 601, URL Redirection to Untrusted Site ('Open Redirect'),SI-10,4,Information Input Validation
 607, Public Static Final Field References Mutable Object,,4,
 609, Double-Checked Locking,,4,
-611, Improper Restriction of XML External Entity Reference ('XXE'),,4,
+611, Improper Restriction of XML External Entity Reference ('XXE'),SI-10,4,Information Input Validation
 613, Insufficient Session Expiration,AC-12,4,Session Termination
 614, Sensitive Cookie in HTTPS Session Without 'Secure' Attribute,SC-8,4,Transmission Confidentiality and Integrity
 615, Information Exposure Through Comments,AC-3,4,Access Enforcement : -5 Security-Relevant Information
