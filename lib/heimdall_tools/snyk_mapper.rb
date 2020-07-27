@@ -2,8 +2,6 @@ require 'json'
 require 'csv'
 require 'heimdall_tools/hdf'
 require 'utilities/xml_to_hash'
-require 'pp'
-
 
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
@@ -15,11 +13,9 @@ IMPACT_MAPPING = {
   low: 0.3,
 }.freeze
 
-CWE_REGEX = 'CWE-(\d*):'.freeze
+SNYK_VERSION_REGEX = 'v(\d+.)(\d+.)(\d+.)'.freeze
 
 DEFAULT_NIST_TAG = ["blah"].freeze
-
-# rubocop:disable Metrics/AbcSize
 
 # Loading spinner sign
 $spinner = Enumerator.new do |e|
@@ -70,6 +66,8 @@ module HeimdallTools
       finding['status'] = 'failed'
       finding['code_desc'] = "From : [ #{vulnerability['from'].join(" , ").to_s } ]"
       finding['run_time'] = NA_FLOAT
+
+      # Snyk results does not profile scan timestamp; using current time to satisfy HDF format
       finding['start_time'] = Time.now.strftime("%a,%d %b %Y %X")
       [finding]
     end
@@ -126,29 +124,29 @@ module HeimdallTools
         project['vulnerabilities'].each do | vulnerability |
           printf("\rProcessing: %s", $spinner.next)
 
-          @item = {}
-          @item['tags']               = {}
-          @item['descriptions']       = []
-          @item['refs']               = NA_ARRAY
-          @item['source_location']    = NA_HASH
+          item = {}
+          item['tags']               = {}
+          item['descriptions']       = []
+          item['refs']               = NA_ARRAY
+          item['source_location']    = NA_HASH
+          item['descriptions']       = NA_ARRAY
 
+          item['title']              = vulnerability['title'].to_s
+          item['id']                 = vulnerability['id'].to_s
+          item['desc']               = vulnerability['description'].to_s
+          item['impact']             = impact(vulnerability['severity']) 
+          item['code']               = ''
+          item['results']            = finding(vulnerability)
+          item['tags']['nist']       = nist_tag( parse_identifiers( vulnerability, 'CWE') )
+          item['tags']['cweid']      = parse_identifiers( vulnerability, 'CWE')
+          item['tags']['cveid']      = parse_identifiers( vulnerability, 'CVE')
+          item['tags']['ghsaid']     = parse_identifiers( vulnerability, 'GHSA')
 
-          @item['title']              = vulnerability['title'].to_s
-          @item['id']                 = vulnerability['id'].to_s
-          @item['desc']               = vulnerability['description'].to_s
-          @item['impact']            = impact(vulnerability['severity']) 
-          @item['code']               = ''
-          @item['results']            = finding(vulnerability)
-          @item['tags']['nist']       = nist_tag( parse_identifiers( vulnerability, 'CWE') )
-          @item['tags']['cweid']       = parse_identifiers( vulnerability, 'CWE')
-          @item['tags']['cveid']       = parse_identifiers( vulnerability, 'CVE')
-          @item['tags']['ghsaid']       = parse_identifiers( vulnerability, 'GHSA')
-
-          controls << @item
+          controls << item
         end
         controls = collapse_duplicates(controls)
         scaninfo = extract_scaninfo(project)
-        results = HeimdallDataFormat.new(profile_name: "Snyk Policy: #{scaninfo['policy']}",
+        results = HeimdallDataFormat.new(profile_name: scaninfo['policy'],
                                          version: scaninfo['version'],
                                          title: "Snyk Project: #{scaninfo['projectName']}",
                                          summary: "Snyk Summary: #{scaninfo['summary']}",
