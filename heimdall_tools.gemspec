@@ -36,7 +36,6 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_runtime_dependency 'git-lite-version-bump', '>= 0.17.2'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'pry'
   spec.add_development_dependency 'codeclimate-test-reporter'
   spec.add_development_dependency 'rake'
 end
