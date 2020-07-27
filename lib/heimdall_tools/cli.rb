@@ -61,6 +61,17 @@ module HeimdallTools
       
     end
 
+
+    desc 'snyk_mapper', 'snyk_mapper translates Synk results Json to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:fortify_mapper)
+    option :json, required: true, aliases: '-j'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def zap_mapper
+      hdf = HeimdallTools::SnykMapper.new(File.read(options[:json]), options[:name]).to_hdf
+      File.write(options[:output], hdf)
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION
