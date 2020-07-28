@@ -15,7 +15,7 @@ IMPACT_MAPPING = {
 
 SNYK_VERSION_REGEX = 'v(\d+.)(\d+.)(\d+)'.freeze
 
-DEFAULT_NIST_TAG = ["blah"].freeze
+DEFAULT_NIST_TAG = ["SA-11", "RA-5"].freeze
 
 # Loading spinner sign
 $spinner = Enumerator.new do |e|
