@@ -69,7 +69,7 @@ module HeimdallTools
       finding['run_time'] = NA_FLOAT
 
       # Snyk results does not profile scan timestamp; using current time to satisfy HDF format
-      finding['start_time'] = Time.now.strftime("%a,%d %b %Y %X")
+      finding['start_time'] = NA_STRING
       [finding]
     end
 
