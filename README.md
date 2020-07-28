@@ -10,6 +10,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **zap_mapper** - OWASP ZAP - open-source dynamic code analysis tool
 - **burpsuite_mapper** - commercial dynamic analysis tool
 - **nessus_mapper** - commercial vulnerability scanner
+- **snyk_mapper** - commercial package vulnerability scanner
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -143,6 +144,23 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools nessus_mapper -x nessus-results.xml -o test-env
+```
+
+## snyk_mapper
+
+snyk_mapper translates an Snyk results JSON file into HDF format json to be viewable in Heimdall
+  
+Note: A separate HDF JSON is generated for each project reported in the Snyk Report.
+
+```
+USAGE: heimdall_tools snyk_mapper [OPTIONS] -x <snyk-results-json> -o <hdf-file-prefix>
+
+FLAGS:
+    -j <snyk_results_jsonl>          : path to Snyk results JSON file.
+    -o --output_prefix <prefix>      : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools snyk_mapper -j snyk_results.json -o output-file-prefix
 ```
 
 ## version  

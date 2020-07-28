@@ -10,4 +10,5 @@ module HeimdallTools
   autoload :SonarQubeMapper, 'heimdall_tools/sonarqube_mapper'
   autoload :BurpSuiteMapper, 'heimdall_tools/burpsuite_mapper'
   autoload :NessusMapper, 'heimdall_tools/nessus_mapper'
+  autoload :SnykMapper, 'heimdall_tools/snyk_mapper'
 end
