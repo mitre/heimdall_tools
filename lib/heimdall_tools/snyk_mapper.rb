@@ -13,7 +13,7 @@ IMPACT_MAPPING = {
   low: 0.3,
 }.freeze
 
-SNYK_VERSION_REGEX = 'v(\d+.)(\d+.)(\d+.)'.freeze
+SNYK_VERSION_REGEX = 'v(\d+.)(\d+.)(\d+)'.freeze
 
 DEFAULT_NIST_TAG = ["blah"].freeze
 
@@ -51,7 +51,8 @@ module HeimdallTools
       info = {}
       begin
         info['policy'] = project['policy']
-        info['version'] = '1.16.0'
+        reg = Regexp.new(SNYK_VERSION_REGEX, Regexp::IGNORECASE)
+        info['version'] = info['policy'].scan(reg).join 
         info['projectName'] = project['projectName']
         info['summary'] = project['summary']
 
