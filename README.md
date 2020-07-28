@@ -153,7 +153,7 @@ snyk_mapper translates an Snyk results JSON file into HDF format json to be view
 Note: A separate HDF JSON is generated for each project reported in the Snyk Report.
 
 ```
-USAGE: heimdall_tools nessus_mapper [OPTIONS] -x <nessus-results-xml> -o <hdf-file-prefix>
+USAGE: heimdall_tools snyk_mapper [OPTIONS] -x <snyk-results-json> -o <hdf-file-prefix>
 
 FLAGS:
     -j <snyk_results_jsonl>          : path to Snyk results JSON file.
