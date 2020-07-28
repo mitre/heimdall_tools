@@ -68,8 +68,7 @@ module HeimdallTools
     option :verbose, type: :boolean, aliases: '-V'
     def snyk_mapper
       hdfs = HeimdallTools::SnykMapper.new(File.read(options[:json]), options[:name]).to_hdf
-
-      puts "\nHDF Generated:"
+      puts "\r\HDF Generated:\n"
       hdfs.keys.each do | host |
         File.write("#{options[:output_prefix]}-#{host}.json", hdfs[host])
         puts "#{options[:output_prefix]}-#{host}.json"
