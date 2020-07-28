@@ -91,7 +91,7 @@ module HeimdallTools
     end
 
     def parse_mapper
-      csv_data = CSV.read(CWE_NIST_MAPPING_FILE, { encoding: 'UTF-8',
+      csv_data = CSV.read(CWE_NIST_MAPPING_FILE, **{ encoding: 'UTF-8',
                                                    headers: true,
                                                    header_converters: :symbol,
                                                    converters: :all })
