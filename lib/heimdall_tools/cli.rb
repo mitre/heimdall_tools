@@ -61,8 +61,8 @@ module HeimdallTools
       
     end
 
-    desc 'snyk_mapper', 'snyk_mapper translates Synk results Json to HDF format Json be viewed on Heimdall'
-    long_desc Help.text(:fortify_mapper)
+    desc 'snyk_mapper', 'snyk_mapper translates Snyk results Json to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:snyk_mapper)
     option :json, required: true, aliases: '-j'
     option :output_prefix, required: true, aliases: '-o'
     option :verbose, type: :boolean, aliases: '-V'
@@ -73,6 +73,18 @@ module HeimdallTools
         File.write("#{options[:output_prefix]}-#{host}.json", hdfs[host])
         puts "#{options[:output_prefix]}-#{host}.json"
       end
+    end
+
+    desc 'nikto_mapper', 'nikto_mapper translates Nikto results Json to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:nikto_mapper)
+    option :json, required: true, aliases: '-j'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def nikto_mapper
+      hdf = HeimdallTools::NiktoMapper.new(File.read(options[:json])).to_hdf
+      File.write(options[:output], hdf)
+      puts "\r\HDF Generated:\n"
+      puts "#{options[:output]}"
     end
 
     desc 'version', 'prints version'

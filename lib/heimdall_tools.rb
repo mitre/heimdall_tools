@@ -11,4 +11,5 @@ module HeimdallTools
   autoload :BurpSuiteMapper, 'heimdall_tools/burpsuite_mapper'
   autoload :NessusMapper, 'heimdall_tools/nessus_mapper'
   autoload :SnykMapper, 'heimdall_tools/snyk_mapper'
+  autoload :NiktoMapper, 'heimdall_tools/nikto_mapper'
 end
