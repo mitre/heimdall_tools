@@ -11,6 +11,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **burpsuite_mapper** - commercial dynamic analysis tool
 - **nessus_mapper** - commercial vulnerability scanner
 - **snyk_mapper** - commercial package vulnerability scanner
+- **nikto_mapper** - open-source web server scanner 
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -161,6 +162,23 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools snyk_mapper -j snyk_results.json -o output-file-prefix
+```
+
+## nikto_mapper
+
+nikto_mapper translates an Nikto results JSON file into HDF format JSON to be viewable in Heimdall
+  
+Note: Current this mapper only support single target Nikto Scans.
+
+```
+USAGE: heimdall_tools nikto_mapper [OPTIONS] -x <nikto-results-json> -o <hdf-scan-results.json>
+
+FLAGS:
+    -j <nikto_results_json>          : path to Nikto results JSON file.
+    -o --output_prefix <prefix>      : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools nikto_mapper -j nikto_results.json -o nikto_results.json
 ```
 
 ## version  
