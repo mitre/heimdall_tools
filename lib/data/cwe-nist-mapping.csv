@@ -64,10 +64,13 @@
 251, Often Misused: String Management,,4,
 252, Unchecked Return Value,,4,
 256, Plaintext Storage of a Password,SC-28,4,Protection of Information at Rest
+257, Storing Passwords in a Recoverable Format,IA-5,4,Authenticator Management
 258, Empty Password in Configuration File,SC-28,4,Protection of Information at Rest
 259, Use of Hard-coded Password,,4,
 260, Password in Configuration File,SC-28,4,Protection of Information at Rest
 261, Weak Cryptography for Passwords,SC-13,4,Cryptographic Protection
+262, Not Using Password Aging,IA-5,4,Authenticator Management
+263, Password Aging with Long Expiration,IA-5,4,Authenticator Management
 265, Privilege / Sandbox Issues,AC-6,4,Least Privilege
 269, Improper Privilege Management,AC-4,4,Information Flow Enforcement
 272, Least Privilege Violation,AC-6,4,Least Privilege: Privilege Levels for Code Execution -8
@@ -175,8 +178,9 @@
 662, Improper Synchonization,,4,
 667, Improper Locking,,4,
 676, Use of Potentially Dangerous Function,,4,
-690,: Unchecked Return Value to NULL Pointer Dereference,,4,
+690, Unchecked Return Value to NULL Pointer Dereference,,4,
 691, Insufficient Control Flow Management,SI-11,4,Error Handling
+693, Protection Mechanism Failure,IA-5,4,Authenticator Management
 694, Use of Multiple Resources with Duplicate Identifier,,4,
 732, Incorrect Permission Assignment for Critical Resource,AC-3,4,Access Enforcement
 733, Compiler Optimization Removal or Modification of Security-critical Code,,4,
