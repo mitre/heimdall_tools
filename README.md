@@ -13,6 +13,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **snyk_mapper** - commercial package vulnerability scanner
 - **nikto_mapper** - open-source web server scanner 
 - **jfrog_xray_mapper** - package vulnerability scanner
+- **aws_config_mapper** - assess, audit, and evaluate AWS resources
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -195,6 +196,26 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools jfrog_xray_mapper -j xray_results.json -o xray_results_hdf.json
+```
+
+## aws_config_mapper
+
+aws_config_mapper pulls Ruby AWS SDK data to translate AWS Config Rule results into HDF format json to be viewable in Heimdall
+
+### AWS Config Rule Mapping:
+  The mapping of AWS Config Rules to 800-53 Controls was sourced from [this link](https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-800-53_rev_4.html).
+  
+### Authentication with AWS:
+  [Developer Guide for configuring Ruby AWS SDK for authentication](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html)
+  
+```
+USAGE: heimdall_tools aws_config_mapper [OPTIONS] -o <hdf-scan-results.json>
+
+FLAGS:
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools aws_config_mapper -o aws_config_results_hdf.json
 ```
 
 ## version  

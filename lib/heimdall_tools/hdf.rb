@@ -29,7 +29,8 @@ module HeimdallTools
                    groups: NA_ARRAY,
                    status: 'loaded',
                    controls: NA_TAG,
-                   target_id: NA_TAG)
+                   target_id: NA_TAG,
+                   statistics: NA_HASH)
 
       @results_json = {}
       @results_json['platform'] = {}
@@ -40,6 +41,7 @@ module HeimdallTools
 
       @results_json['statistics'] = {}
       @results_json['statistics']['duration'] = duration || NA_TAG
+      @results_json['statistics'].merge! statistics
 
       @results_json['profiles'] = []
 
