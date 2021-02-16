@@ -5,6 +5,8 @@ require 'heimdall_tools/hdf'
 
 RESOURCE_DIR = Pathname.new(__FILE__).join('../../data')
 
+DEFAULT_NIST_TAG = ["SA-11", "RA-5"].freeze
+
 MAPPING_FILES = {
   cwe: File.join(RESOURCE_DIR, 'cwe-nist-mapping.csv'),
   owasp: File.join(RESOURCE_DIR, 'owasp-nist-mapping.csv')
@@ -237,7 +239,7 @@ class Control
       return [@mappings[tag_type][parsed_tag]].flatten.uniq
     end
 
-    ['unmapped'] # HDF expects this to be a list, but not an empty list even if there aren't results
+    DEFAULT_NIST_TAG # Entries with unmapped NIST tags are defaulted to NIST tags ‘SA-11, RA-5 Rev_4’
   end
 
   def hdf
