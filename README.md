@@ -12,6 +12,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **nessus_mapper** - commercial vulnerability scanner
 - **snyk_mapper** - commercial package vulnerability scanner
 - **nikto_mapper** - open-source web server scanner 
+- **jfrog_xray_mapper** - package vulnerability scanner
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -179,6 +180,21 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools nikto_mapper -j nikto_results.json -o nikto_results.json
+```
+
+## jfrog_xray_mapper
+
+jfrog_xray_mapper translates an JFrog Xray results JSON file into HDF format JSON to be viewable in Heimdall
+  
+```
+USAGE: heimdall_tools jfrog_xray_mapper [OPTIONS] -j <xray-results-json> -o <hdf-scan-results.json>
+
+FLAGS:
+    -j <xray_results_json>           : path to xray results JSON file.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools jfrog_xray_mapper -j xray_results.json -o xray_results_hdf.json
 ```
 
 ## version  
