@@ -87,6 +87,18 @@ module HeimdallTools
       puts "#{options[:output]}"
     end
 
+    desc 'jfrog_xray_mapper', 'jfrog_xray_mapper translates Jfrog Xray results Json to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:jfrog_xray_mapper)
+    option :json, required: true, aliases: '-j'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def jfrog_xray_mapper
+      hdf = HeimdallTools::JfrogXrayMapper.new(File.read(options[:json])).to_hdf
+      File.write(options[:output], hdf)
+      puts "\r\HDF Generated:\n"
+      puts "#{options[:output]}"
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION

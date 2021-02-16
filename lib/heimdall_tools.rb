@@ -12,4 +12,5 @@ module HeimdallTools
   autoload :NessusMapper, 'heimdall_tools/nessus_mapper'
   autoload :SnykMapper, 'heimdall_tools/snyk_mapper'
   autoload :NiktoMapper, 'heimdall_tools/nikto_mapper'
+  autoload :JfrogXrayMapper, 'heimdall_tools/jfrog_xray_mapper'
 end
