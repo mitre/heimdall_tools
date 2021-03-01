@@ -99,6 +99,18 @@ module HeimdallTools
       puts "#{options[:output]}"
     end
 
+    desc 'dbprotect_mapper', 'dbprotect_mapper translates dbprotect results xml to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:dbprotect_mapper)
+    option :xml, required: true, aliases: '-x'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def dbprotect_mapper
+      hdf = HeimdallTools::DBProtectMapper.new(File.read(options[:xml])).to_hdf
+      File.write(options[:output], hdf)
+      puts "\r\HDF Generated:\n"
+      puts "#{options[:output]}"
+    end
+
     desc 'version', 'prints version'
     def version
       puts VERSION
