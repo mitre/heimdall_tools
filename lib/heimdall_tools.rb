@@ -13,4 +13,5 @@ module HeimdallTools
   autoload :SnykMapper, 'heimdall_tools/snyk_mapper'
   autoload :NiktoMapper, 'heimdall_tools/nikto_mapper'
   autoload :JfrogXrayMapper, 'heimdall_tools/jfrog_xray_mapper'
+  autoload :DBProtectMapper, 'heimdall_tools/dbprotect_mapper'
 end

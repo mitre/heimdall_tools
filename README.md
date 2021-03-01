@@ -13,6 +13,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **snyk_mapper** - commercial package vulnerability scanner
 - **nikto_mapper** - open-source web server scanner 
 - **jfrog_xray_mapper** - package vulnerability scanner
+- **dbprotect_mapper** - database vulnerability scanner
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -195,6 +196,21 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools jfrog_xray_mapper -j xray_results.json -o xray_results_hdf.json
+```
+
+## dbprotect_mapper
+
+dbprotect_mapper translates DBProtect report in `Check Results Details` format XML to HDF format JSON be viewed on Heimdall.
+  
+```
+USAGE: heimdall_tools dbprotect_mapper [OPTIONS] -x <check_results_details_report_xml> -o <db_protect_hdf.json>
+
+FLAGS:
+    -x <check_results_details_report_xml>           : path to DBProtect report XML file.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools dbprotect_mapper -x check_results_details_report.xml -o db_protect_hdf.json
 ```
 
 ## version  
