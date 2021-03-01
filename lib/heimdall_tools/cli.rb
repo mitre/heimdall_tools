@@ -98,7 +98,7 @@ module HeimdallTools
       puts "\r\HDF Generated:\n"
       puts "#{options[:output]}"
     end
-
+    
     desc 'dbprotect_mapper', 'dbprotect_mapper translates dbprotect results xml to HDF format Json be viewed on Heimdall'
     long_desc Help.text(:dbprotect_mapper)
     option :xml, required: true, aliases: '-x'
@@ -106,6 +106,18 @@ module HeimdallTools
     option :verbose, type: :boolean, aliases: '-V'
     def dbprotect_mapper
       hdf = HeimdallTools::DBProtectMapper.new(File.read(options[:xml])).to_hdf
+      File.write(options[:output], hdf)
+      puts "\r\HDF Generated:\n"
+      puts "#{options[:output]}"
+    end
+
+    desc 'aws_config_mapper', 'aws_config_mapper pulls Ruby AWS SDK data to translate AWS Config Rule results into HDF format Json to be viewable in Heimdall'
+    long_desc Help.text(:aws_config_mapper)
+    # option :custom_mapping, required: false, aliases: '-m'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def aws_config_mapper
+      hdf = HeimdallTools::AwsConfigMapper.new(options[:custom_mapping]).to_hdf
       File.write(options[:output], hdf)
       puts "\r\HDF Generated:\n"
       puts "#{options[:output]}"
