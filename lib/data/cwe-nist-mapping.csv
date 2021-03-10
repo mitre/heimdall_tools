@@ -1,4 +1,4 @@
-﻿CWE-ID,CWE Name,NIST-ID,Rev,NIST Name
+CWE-ID,CWE Name,NIST-ID,Rev,NIST Name
 5, J2EE Misconfiguration: Data Transmission Without Encryption,SC-8,4,Transmission Confidentiality and Integrity
 6, J2EE Misconfiguration: Insufficient Session-ID Length,SC-23,4,Session Authenticity
 7, J2EE Misconfiguration: Missing Custom Error Page,SI-11,4,Error Handling
@@ -40,33 +40,33 @@
 120, Buffer Copy without Checking Size of Input ('Classic Buffer Overflow'),SI-10,4,Information Input Validation
 125, Out-of-bounds Read,SI-10,4,Information Input Validation
 126, Buffer Over-read,SI-10,4,Information Input Validation
-129, Improper Validation of Array Index,,4,
+129, Improper Validation of Array Index,SA-11|RA-5,4,
 131, Incorrect Calculation of Buffer Size,SI-10,4,Information Input Validation
 134, Uncontrolled Format String,SI-10,4,Information Input Validation
 170, Improper Null Termination,SI-10,4,Information Input Validation
-176, Improper Handling of Unicode Encoding,,4,
-185, Incorrect Regular Expression,,4,
+176, Improper Handling of Unicode Encoding,SA-11|RA-5,4,
+185, Incorrect Regular Expression,SA-11|RA-5,4,
 189, Numeric Errors,SA-11,4,Developer Security Testing and Evaluation
 190, Integer Overflow or Wraparound,SI-10,4,Information Input Validation
-195, Signed to Unsigned Conversion Error,,4,
+195, Signed to Unsigned Conversion Error,SA-11|RA-5,4,
 200, Information Exposure,SC-8,4,Transmission Confidentiality and Integrity
-209, Information Exposure Through an Error Message,,4,
+209, Information Exposure Through an Error Message,SA-11|RA-5,4,
 215, Information Exposure Through Debug Information,SI-11,4,Error Handling
 226, Sensitive Information Uncleared Before Release,SC-4,4,Information in Shared Resources
 235, Improper Handling of Extra Parameters,SI-10,4,Information Input Validation
-242, Use of Inherently Dangerous Function,,4,
+242, Use of Inherently Dangerous Function,SA-11|RA-5,4,
 243, Creation of chroot Jail Without Changing Working Directory,AC-3,4,Access Enforcement
 244, Improper Cleaning of Heap Memory,SC-4,4,Information in Shared Resources
-245, J2EE Bad Practices: Direct Management of Connections,,4,
-246, J2EE Bad Practices: Direct Use of Sockets,,4,
-248, Uncaught Exception,,4,
+245, J2EE Bad Practices: Direct Management of Connections,SA-11|RA-5,4,
+246, J2EE Bad Practices: Direct Use of Sockets,SA-11|RA-5,4,
+248, Uncaught Exception,SA-11|RA-5,4,
 250, Execution with Unnecessary Privileges,AC-6,4,Least Privilege: Privilege Levels for Code Execution
-251, Often Misused: String Management,,4,
-252, Unchecked Return Value,,4,
+251, Often Misused: String Management,SA-11|RA-5,4,
+252, Unchecked Return Value,SA-11|RA-5,4,
 256, Plaintext Storage of a Password,SC-28,4,Protection of Information at Rest
 257, Storing Passwords in a Recoverable Format,IA-5,4,Authenticator Management
 258, Empty Password in Configuration File,SC-28,4,Protection of Information at Rest
-259, Use of Hard-coded Password,,4,
+259, Use of Hard-coded Password,SA-11|RA-5,4,
 260, Password in Configuration File,SC-28,4,Protection of Information at Rest
 261, Weak Cryptography for Passwords,SC-13,4,Cryptographic Protection
 262, Not Using Password Aging,IA-5,4,Authenticator Management
@@ -102,34 +102,34 @@
 358, Improperly Implemented Security Check for Standard,AC-3,4,Access Enforcement
 359, Exposure of Private Information ('Privacy Violation'),SC-28,4,Protection of Information at Rest
 362, Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition'),SC-4,4,Information in Shared Resources
-364, Signal Handler Race Condition,,4,
-369, Divide by Zero,,4,
+364, Signal Handler Race Condition,SA-11|RA-5,4,
+369, Divide by Zero,SA-11|RA-5,4,
 377, Insecure Temporary File,SC-4,4,Information in Shared Resources (P1)
-382, J2EE Bad Practices: Use of System.exit(),,4,
-383, J2EE Bad Practices: Direct Use of Threads,,4,
+382, J2EE Bad Practices: Use of System.exit(),SA-11|RA-5,4,
+383, J2EE Bad Practices: Direct Use of Threads,SA-11|RA-5,4,
 384, Session Fixation,SC-23,4,Session Authenticity
 388, Error Handling,SI-11,4,Error Handling
 391, Unchecked Error Condition,SI-11,4,Error Handling
 395, Use of NullPointerException Catch to Detect NULL Pointer Dereference,SI-11,4,Error Handling
 396, Declaration of Catch for Generic Exception,SI-11,4,Error Handling
 397, Declaration of Throws for Generic Exception,SI-11,4,Error Handling
-398, Indicator of Poor Code Quality,,4,
+398, Indicator of Poor Code Quality,SA-11|RA-5,4,
 400, Uncontrolled Resource Consumption ('Resource Exhaustion'),SI-10,4,Information Input Validation
-401, Improper Release of Memory Before Removing Last Reference,,4,
-404, Improper Resource Shutdown or Release,,4,
-415, Double Free,,4,
+401, Improper Release of Memory Before Removing Last Reference,SA-11|RA-5,4,
+404, Improper Resource Shutdown or Release,SA-11|RA-5,4,
+415, Double Free,SA-11|RA-5,4,
 416, Use after Free,SC-4,4,Information in Shared Resources
 434, Unrestricted Upload of File with Dangerous Type,AC-6,4,Least Privilege: Privilege Levels for Code Execution
 444, Inconsistent Interpretation of HTTP Requests ('HTTP Request Smuggling'),SI-10,4,Information Input Validation
-457, Use of Uninitialized Variable,,4,
-466, Return of Pointer Value Outside of Expected Range,,4,
+457, Use of Uninitialized Variable,SA-11|RA-5,4,
+466, Return of Pointer Value Outside of Expected Range,SA-11|RA-5,4,
 470, Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection'),SI-10,4,Information Input Validation
 471, Modification of Assumed-Immutable DATA (MAID),AC-3,4,Access Enforcement
-474, Use of Function with Inconsistent Implementations,,4,
-475, Undefined Behavior for Input to API,,4,
+474, Use of Function with Inconsistent Implementations,SA-11|RA-5,4,
+475, Undefined Behavior for Input to API,SA-11|RA-5,4,
 476, NULL Pointer Dereference,SI-10,4,Information Input Validation
-477, Use of Obsolete Functions,,4,
-478, Missing Default Case in Switch Statement,,4,
+477, Use of Obsolete Functions,SA-11|RA-5,4,
+478, Missing Default Case in Switch Statement,SA-11|RA-5,4,
 492, Use of Inner Class Containing Sensitive Data,AC-3,4,Access Enforcement
 493, Critical Public Variable Without Final Modifier,SI-11,4,Error Handling
 494, Download of Code Without Integrity Check,SI-10,4,Information Input Validation
@@ -140,62 +140,62 @@
 521, Weak Password Requirements,IA-5,4,Authenticator Management : -1 Password-based Authentication
 522, Insufficiently Protected Credentials,SC-8,4,Transmission Confidentiality and Integrity
 539, Information Exposure Through Persistent Cookies,SC-23,4,Session Authenticity
-546, Suspicious Comment,,4,
-557, Concurrency Issues,,4,
-560, Use of umask() with chmod-style Argument,,4,
-561, Dead Code,,4,
-562, Return of Stack Variable Address,,4,
-563, Assigntment to Variable without Use,,4,
+546, Suspicious Comment,SA-11|RA-5,4,
+557, Concurrency Issues,SA-11|RA-5,4,
+560, Use of umask() with chmod-style Argument,SA-11|RA-5,4,
+561, Dead Code,SA-11|RA-5,4,
+562, Return of Stack Variable Address,SA-11|RA-5,4,
+563, Assigntment to Variable without Use,SA-11|RA-5,4,
 564, SQL Injection: Hibernate,SI-10,4,Information Input Validation
 566, Authorization Bypass Through User-Controlled SQL Primary Key,AC-3,4,Access Enforcement
-568, finalize() Method without super.finalize(),,4,
-574, EJB Bad Practices: Use of Synchronization Primitives,,4,
-575, EJB Bad Practices: Use of AWT Swing,,4,
-576, EJB Bad Practices: Use of java I/O,,4,
-577, EJB Bad Practices: Use of Sockets,,4,
-578, EJB Bad Practices: Use of Class Loader,,4,
-579, J2EE Bad Practices: Non-serializable Object Stored in Session,,4,
-580, clone() Method Without super.clone(),,4,
-581, Object Model Violation: Just One of Equals and Hashcode Defined,,4,
+568, finalize() Method without super.finalize(),SA-11|RA-5,4,
+574, EJB Bad Practices: Use of Synchronization Primitives,SA-11|RA-5,4,
+575, EJB Bad Practices: Use of AWT Swing,SA-11|RA-5,4,
+576, EJB Bad Practices: Use of java I/O,SA-11|RA-5,4,
+577, EJB Bad Practices: Use of Sockets,SA-11|RA-5,4,
+578, EJB Bad Practices: Use of Class Loader,SA-11|RA-5,4,
+579, J2EE Bad Practices: Non-serializable Object Stored in Session,SA-11|RA-5,4,
+580, clone() Method Without super.clone(),SA-11|RA-5,4,
+581, Object Model Violation: Just One of Equals and Hashcode Defined,SA-11|RA-5,4,
 582, Array Declared Public,AC-3,4,Access Enforcement
 583, finalize() Method Declared Public,AC-3,4,Access Enforcement
 584, Return Inside Finally Block,SI-11,4,Error Handling
-586, Explicit Call to Finalize(),,4,
-590, Free of Memory not on the Heap,,4,
+586, Explicit Call to Finalize(),SA-11|RA-5,4,
+590, Free of Memory not on the Heap,SA-11|RA-5,4,
 591, Sensitive Data Storage in Improperly Locked Memory,SC-4,4,Information in Shared Resources
 601, URL Redirection to Untrusted Site ('Open Redirect'),SI-10,4,Information Input Validation
-607, Public Static Final Field References Mutable Object,,4,
-609, Double-Checked Locking,,4,
+607, Public Static Final Field References Mutable Object,SA-11|RA-5,4,
+609, Double-Checked Locking,SA-11|RA-5,4,
 611, Improper Restriction of XML External Entity Reference ('XXE'),SI-10,4,Information Input Validation
 613, Insufficient Session Expiration,AC-12,4,Session Termination
 614, Sensitive Cookie in HTTPS Session Without 'Secure' Attribute,SC-8,4,Transmission Confidentiality and Integrity
 615, Information Exposure Through Comments,AC-3,4,Access Enforcement : -5 Security-Relevant Information
 639, Authorization Bypass Through User-Controlled Key,AC-3,4,Access Enforcement
-642, External Control of Critical State Data,,4,
+642, External Control of Critical State Data,SA-11|RA-5,4,
 643, Improper Neutralization of Data within XPath Expressions ('XPath Injection'),SI-10,4,Information Input Validation
-651, Information Exposure Through WSDL File,,4,
+651, Information Exposure Through WSDL File,SA-11|RA-5,4,
 652, Improper Neutralization of Data within XQuery Expressions ('XQuery Injection'),SI-10,4,Information Input Validation
-662, Improper Synchonization,,4,
-667, Improper Locking,,4,
-676, Use of Potentially Dangerous Function,,4,
-690, Unchecked Return Value to NULL Pointer Dereference,,4,
+662, Improper Synchonization,SA-11|RA-5,4,
+667, Improper Locking,SA-11|RA-5,4,
+676, Use of Potentially Dangerous Function,SA-11|RA-5,4,
+690, Unchecked Return Value to NULL Pointer Dereference,SA-11|RA-5,4,
 691, Insufficient Control Flow Management,SI-11,4,Error Handling
 693, Protection Mechanism Failure,IA-5,4,Authenticator Management
-694, Use of Multiple Resources with Duplicate Identifier,,4,
+694, Use of Multiple Resources with Duplicate Identifier,SA-11|RA-5,4,
 732, Incorrect Permission Assignment for Critical Resource,AC-3,4,Access Enforcement
-733, Compiler Optimization Removal or Modification of Security-critical Code,,4,
+733, Compiler Optimization Removal or Modification of Security-critical Code,SA-11|RA-5,4,
 759, Use of a One-Way Hash without a Salt,SC-13,4,Cryptographic Protection
 760, Use of a One-Way Hash with a Predictable Salt,SC-13,4,Cryptographic Protection
-776, Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion'),,4,
+776, Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion'),SA-11|RA-5,4,
 780, Use of RSA Algorithm without OAEP,SC-13,4,Cryptographic Protection
 785, Use of Path Manipulation Function without Maximum-sized Buffer,SI-10,4,Information Input Validation
 787, Out-of-bounds Write,SI-10,4,Information Input Validation
-798, Use of Hard-coded Credentials,,4,
+798, Use of Hard-coded Credentials,SA-11|RA-5,4,
 805, Buffer Access with Incorrect Length Value,SI-10,4,Information Input Validation
 807, Reliance on Untrusted Inputs in a Security Decision,SC-23,4,Session Authenticity
-820, Missing Synchronization,,4,
-821, Incorrect Synchronization,,4,
-829, Inclusion of Functionality from Untrusted Control Sphere,,4,
+820, Missing Synchronization,SA-11|RA-5,4,
+821, Incorrect Synchronization,SA-11|RA-5,4,
+829, Inclusion of Functionality from Untrusted Control Sphere,SA-11|RA-5,4,
 862, Missing Authorization,AC-3,4,Access Enforcement
 863, Incorrect Authorization,AC-3,4,Access Enforcement
 915, Improperly Controlled Modification of Dynamically-Determined Object Attributes,SI-10,4,Information Input Validation
