@@ -25,18 +25,18 @@ SuSE Local Security Checks,*,SI-2|RA-5,4
 Ubuntu Local Security Checks,*,SI-2|RA-5,4
 VMware ESX Local Security Checks,*,SI-2|RA-5,4
 Virtuozzo Local Security Checks,*,SI-2|RA-5,4
-Backdoors,,,
-Brute force attacks,,,
-CGI abuses,,,
-CGI abuses : XSS,,,
-CISCO,,,
-DNS,,,
-Databases,,,
-Default Unix Accounts,,,
-Denial of Service,,,
-FTP,,,
+Backdoors,*,SA-11|RA-5,4
+Brute force attacks,*,SA-11|RA-5,4
+CGI abuses,*,SA-11|RA-5,4
+CGI abuses : XSS,*,SA-11|RA-5,4
+CISCO,*,SA-11|RA-5,4
+DNS,*,SA-11|RA-5,4
+Databases,*,SA-11|RA-5,4
+Default Unix Accounts,*,SA-11|RA-5,4
+Denial of Service,*,SA-11|RA-5,4
+FTP,*,SA-11|RA-5,4
 Firewalls,56310,SC-7,4
-Gain a shell remotely,,,
+Gain a shell remotely,*,SA-11|RA-5,4
 General,133964,AC-3(4),4
 General,117530,UM-1,4
 General,110483,CM-7,4
@@ -78,16 +78,16 @@ Misc.,84821,AC-17(2)|SC-13,4
 Misc.,83875,AC-17(2)|SC-13,4
 Misc.,70657,AC-17(2)|SC-13,4
 Misc.,58651,AC-17,4
-Mobile Devices,,,
-Netware,,,
-Peer-To-Peer File Sharing,,,
-Policy Compliance,,,
+Mobile Devices,*,SA-11|RA-5,4
+Netware,*,SA-11|RA-5,4
+Peer-To-Peer File Sharing,*,SA-11|RA-5,4
+Policy Compliance,*,SA-11|RA-5,4
 Port scanners,14272,CM-8,4
 RPC,53335,CM-8,4
 RPC,10223,CM-8,4
-SCADA,,,
-SMTP problems,,,
-SNMP,,,
+SCADA,*,SA-11|RA-5,4
+SMTP problems,*,SA-11|RA-5,4
+SNMP,*,SA-11|RA-5,4
 Service detection,121010,AC-17(2)|SC-13,4
 Service detection,104743,AC-17(2)|SC-13,4
 Service detection,25221,CM-8,4
@@ -103,6 +103,6 @@ Web Servers,84502,AC-17(2)|SC-13,4
 Web Servers,43111,CM-8,4
 Web Servers,24260,CM-8,4
 Web Servers,10107,CM-8,4
-Windows,,,
-Windows : Microsoft Bulletins,,,
-Windows : User management,,,
+Windows,*,SA-11|RA-5,4
+Windows : Microsoft Bulletins,*,SA-11|RA-5,4
+Windows : User management,*,SA-11|RA-5,4
