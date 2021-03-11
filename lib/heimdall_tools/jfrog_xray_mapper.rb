@@ -58,7 +58,7 @@ module HeimdallTools
     end
 
     def nist_tag(cweid)
-      entries = @cwe_nist_mapping.select { |x| cweid.include? x[:cweid].to_s }
+      entries = @cwe_nist_mapping.select { |x| cweid.include?(x[:cweid].to_s) && !x[:nistid].nil? }
       tags = entries.map { |x| x[:nistid] }
       tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
     end
