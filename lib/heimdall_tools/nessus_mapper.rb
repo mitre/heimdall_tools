@@ -140,7 +140,7 @@ module HeimdallTools
     end
 
     def plugin_nist_tag(pluginfamily, pluginid)
-      entries = @cwe_nist_mapping.select { |x| (x[:pluginfamily].eql?(pluginfamily) && (x[:pluginid].eql?('*') || x[:pluginid].eql?(pluginid.to_i)) ) }
+      entries = @cwe_nist_mapping.select { |x| (x[:pluginfamily].eql?(pluginfamily) && (x[:pluginid].eql?('*') || x[:pluginid].eql?(pluginid.to_i)) ) && !x[:nistid].nil? }
       tags = entries.map { |x| [x[:nistid].split('|'), "Rev_#{x[:rev]}"] }
       tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
     end
