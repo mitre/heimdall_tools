@@ -71,7 +71,7 @@ module HeimdallTools
     end
 
     def nist_tag(niktoid)
-      entries = @nikto_nist_mapping.select { |x| niktoid.eql?(x[:niktoid].to_s) }
+      entries = @nikto_nist_mapping.select { |x| niktoid.eql?(x[:niktoid].to_s) && !x[:nistid].nil? }
       tags = entries.map { |x| x[:nistid] }
       tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
     end
