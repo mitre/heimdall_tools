@@ -1,6 +1,6 @@
   netsparker_mapper translates an Netsparker  XML results file into HDF format json to be viewable in Heimdall
 
-  The current iteration only works with Netsparker Enterprise Scan.
+  The current iteration only works with Netsparker Enterprise Vulnerabilities Scan.
   
 Examples:
 

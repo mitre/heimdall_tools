@@ -239,7 +239,7 @@ example: heimdall_tools aws_config_mapper -o aws_config_results_hdf.json
 
 netsparker_mapper translates an Netsparker XML results file into HDF format JSON to be viewable in Heimdall.
 
-  The current iteration only works with Netsparker Enterprise Scan.
+  The current iteration only works with Netsparker Enterprise Vulnerabilities Scan.
 
 ```
 USAGE: heimdall_tools netsparker_mapper [OPTIONS] -x <netsparker_results_xml> -o <hdf-scan-results.json>
