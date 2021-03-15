@@ -17,8 +17,6 @@ IMPACT_MAPPING = {
   Information: 0.0
 }.freeze
 
-CWE_REGEX = 'CWE-(\d*):'.freeze
-
 DEFAULT_NIST_TAG = ["SA-11", "RA-5", "Rev_4"].freeze
 
 # rubocop:disable Metrics/AbcSize
@@ -129,15 +127,12 @@ module HeimdallTools
     end
 
     def nist_tag(classification)
-      puts classification
       tags = []
       entries = @cwe_nist_mapping.select { |x| classification['cwe'].include?(x[:cweid].to_s) && !x[:nistid].nil? }
       tags << entries.map { |x| x[:nistid] }
-      puts "cwe #{tags.to_s}"
       entries = @owasp_nist_mapping.select { |x| classification['owasp'].include?(x[:owaspid].to_s) && !x[:nistid].nil? }
       tags << entries.map { |x| x[:nistid] }
-      puts "owasp: #{tags.to_s}"
-      tags.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
+      tags.flatten.empty? ? DEFAULT_NIST_TAG : tags.flatten.uniq
     end
 
     def impact(severity)
