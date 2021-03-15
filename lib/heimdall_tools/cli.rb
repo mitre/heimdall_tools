@@ -122,6 +122,18 @@ module HeimdallTools
       puts "\r\HDF Generated:\n"
       puts "#{options[:output]}"
     end
+    
+    desc 'netsparker_mapper', 'netsparker_mapper translates netsparker enterprise results xml to HDF format Json be viewed on Heimdall'
+    long_desc Help.text(:netsparker_mapper)
+    option :xml, required: true, aliases: '-x'
+    option :output, required: true, aliases: '-o'
+    option :verbose, type: :boolean, aliases: '-V'
+    def netsparker_mapper
+      hdf = HeimdallTools::NetsparkerMapper.new(File.read(options[:xml])).to_hdf
+      File.write(options[:output], hdf)
+      puts "\r\HDF Generated:\n"
+      puts "#{options[:output]}"
+    end
 
     desc 'version', 'prints version'
     def version
