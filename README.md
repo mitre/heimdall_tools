@@ -15,6 +15,7 @@ HeimdallTools supplies several methods to convert output from various tools to "
 - **jfrog_xray_mapper** - package vulnerability scanner
 - **dbprotect_mapper** - database vulnerability scanner
 - **aws_config_mapper** - assess, audit, and evaluate AWS resources
+- **netsparker_mapper** - web application security scanner
 
 Ruby 2.4 or higher (check using "ruby -v")
 
@@ -232,6 +233,23 @@ FLAGS:
     -V --verbose                     : verbose run [optional].
 
 example: heimdall_tools aws_config_mapper -o aws_config_results_hdf.json
+```
+
+## netsparker_mapper
+
+netsparker_mapper translates an Netsparker XML results file into HDF format JSON to be viewable in Heimdall.
+
+  The current iteration only works with Netsparker Enterprise Scan.
+
+```
+USAGE: heimdall_tools netsparker_mapper [OPTIONS] -x <netsparker_results_xml> -o <hdf-scan-results.json>
+
+FLAGS:
+    -x <netsparker_results_xml>      : path to netsparker results XML file.
+    -o --output <scan-results>       : path to output scan-results json.
+    -V --verbose                     : verbose run [optional].
+
+example: heimdall_tools netsparker_mapper -x netsparker_results.xml -o netsparker_hdf.json
 ```
 
 ## version  
