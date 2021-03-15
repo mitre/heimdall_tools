@@ -57,6 +57,14 @@ module HeimdallTools
       [finding]
     end
 
+    def format_control_desc(vulnerability)
+      text = []
+      info = vulnerability['component_versions']['more_details']
+      text << info['description'].to_s
+      text << "cves: #{info['cves'].to_s }" unless info['cves'].nil?
+      text.join("<br>")
+    end
+
     def nist_tag(cweid)
       entries = @cwe_nist_mapping.select { |x| cweid.include? x[:cweid].to_s }
       tags = entries.map { |x| x[:nistid] }
@@ -119,7 +127,7 @@ module HeimdallTools
         # If thats a case MD5 hash is used to collapse vulnerability findings of the same type.
         item['id']                 = vulnerability['id'].empty? ? OpenSSL::Digest::MD5.digest(vulnerability['summary'].to_s).unpack("H*")[0].to_s : vulnerability['id']
         item['title']              = vulnerability['summary'].to_s
-        item['desc']               = vulnerability['component_versions']['more_details']['description'].to_s
+        item['desc']               = format_control_desc(vulnerability)
         item['impact']             = impact(vulnerability['severity'].to_s) 
         item['code']               = NA_STRING
         item['results']            = finding(vulnerability)
