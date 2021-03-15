@@ -37,9 +37,7 @@ module HeimdallTools
       rescue StandardError => e
         raise "Invalid Netsparker XML file provided Exception: #{e}"
       end
-
     end
-
 
     def to_hdf
       controls = []
@@ -165,6 +163,5 @@ module HeimdallTools
       end
       unique_controls
     end
-
   end
 end
