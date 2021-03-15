@@ -15,4 +15,5 @@ module HeimdallTools
   autoload :JfrogXrayMapper, 'heimdall_tools/jfrog_xray_mapper'
   autoload :DBProtectMapper, 'heimdall_tools/dbprotect_mapper'
   autoload :AwsConfigMapper, 'heimdall_tools/aws_config_mapper'
+  autoload :NetsparkerMapper, 'heimdall_tools/netsparker_mapper'
 end
